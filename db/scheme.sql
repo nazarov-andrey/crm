@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.9, for osx10.6 (i386)
+-- MySQL dump 10.13  Distrib 5.1.62, for apple-darwin10.3.0 (i386)
 --
--- Host: localhost    Database: italy
+-- Host: localhost    Database: crm
 -- ------------------------------------------------------
--- Server version	5.5.9
+-- Server version	5.1.62
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,8 +28,9 @@ CREATE TABLE `application` (
   `supplier` bigint(20) NOT NULL,
   `date` date NOT NULL,
   `comment` text NOT NULL,
+  `legal_entity` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +78,7 @@ CREATE TABLE `contact` (
   `type` bigint(20) NOT NULL,
   `value` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +96,20 @@ CREATE TABLE `contact_type` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `legal_entity`
+--
+
+DROP TABLE IF EXISTS `legal_entity`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `legal_entity` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `organization`
 --
 
@@ -109,8 +124,9 @@ CREATE TABLE `organization` (
   `site` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
+  `legal_entity` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,8 +156,9 @@ CREATE TABLE `person` (
   `name` varchar(255) NOT NULL,
   `position` varchar(255) NOT NULL,
   `comment` text NOT NULL,
+  `legal_entity` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,8 +173,9 @@ CREATE TABLE `report` (
   `contact` bigint(20) NOT NULL,
   `date` date NOT NULL,
   `comment` text NOT NULL,
+  `legal_entity` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +191,7 @@ CREATE TABLE `user` (
   `pass` varchar(255) NOT NULL,
   `super` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -185,4 +203,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-25 12:45:43
+-- Dump completed on 2012-04-25 17:36:03
