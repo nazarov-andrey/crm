@@ -5,7 +5,7 @@
 	class Contact {
 		/** @Id @Column(type="bigint") @GeneratedValue */
 		private $id;
-		/** @ManyToOne(targetEntity="Person", inversedBy="features") @JoinColumn(name="person", referencedColumnName="id")  */
+		/** @ManyToOne(targetEntity="Person") @JoinColumn(name="person", referencedColumnName="id")  */
 		private $person;
 		/** @OneToOne(targetEntity="ContactType") @JoinColumn(name="type",referencedColumnName="id") */
 		private $type;

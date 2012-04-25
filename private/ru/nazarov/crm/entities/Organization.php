@@ -1,7 +1,7 @@
 <?php
 	namespace ru\nazarov\crm\entities;
 
-	/** @Entity @Table(name="organization") */
+	/** @Entity(repositoryClass="ru\nazarov\crm\entities\CrmEntityRepository") @Table(name="organization") */
 	class Organization {
 		/** @Id @Column(type="bigint") @GeneratedValue */
 		private $id;
@@ -23,6 +23,8 @@
 		private $persons;
 		/** @Column(name="type", type="bigint")  */
 		private $typeId;
+        /** @Column(name="legal_entity", type="bigint")  */
+        private $legalEntity;
 
 		public function __construct() {
 			$this->persons = new \Doctrine\Common\Collections\ArrayCollection();
@@ -91,5 +93,13 @@
 		public function getPersons() {
 			return $this->persons;
 		}
-	}
+
+        public function getLegalEntity() {
+            return $this->legalEntity;
+        }
+
+        public function setLegalEntity($legalEntity) {
+            $this->legalEntity = $legalEntity;
+        }
+    }
 ?>

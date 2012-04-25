@@ -1,7 +1,7 @@
 <?php
 	namespace ru\nazarov\crm\entities;
 
-	/** @Entity @Table(name="application") */
+	/** @Entity(repositoryClass="ru\nazarov\crm\entities\CrmEntityRepository") @Table(name="application") */
 	class Application {
 		/** @Id @Column(type="bigint") @GeneratedValue */
 		private $id;
@@ -13,8 +13,10 @@
 		private $date;
 		/** @Column(type="text") */
 		private $comment;
+        /** @Column(name="legal_entity", type="bigint")  */
+        private $legalEntity;
 
-		public function setClient($client) {
+        public function setClient($client) {
 			$this->client = $client;
 		}
 
@@ -53,5 +55,13 @@
 		public function getSupplier() {
 			return $this->supplier;
 		}
-	}
+
+        public function setLegalEntity($legalEntity) {
+            $this->legalEntity = $legalEntity;
+        }
+
+        public function getLegalEntity() {
+            return $this->legalEntity;
+        }
+    }
 ?>

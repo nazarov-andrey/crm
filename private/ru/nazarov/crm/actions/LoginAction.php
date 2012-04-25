@@ -30,6 +30,7 @@
 				$auth = $this->auth();
 
 				if ($auth->authenticate($form->getVal('login'), sha1($form->getVal('pass')))->check()) {
+                    $_SESSION['le'] = $form->getVal('legal_entity');
 					$this->app()->redirect('/');
 					return;
 				} else {
@@ -38,6 +39,15 @@
 				}
 			}
 
+            $les = array_map(function ($le) {
+                return (object) array('label' => $le->getName(), 'val' => $le->getId());
+            }, $this->em()->getRepository('\ru\nazarov\crm\entities\LegalEntity')->findAll());
+
+            if (($form->getVal('legal_entity') === null) && (count($les) > 0)) {
+                $form->setVal('legal_entity', $les[0]->val);
+            }
+
+            $form->setFieldVals('legal_entity', $les);
 			$this->view()->set('form', $form);
 			parent::execute();
 		}

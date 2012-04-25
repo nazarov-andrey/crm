@@ -26,6 +26,7 @@
 				$app->setSupplier($em->find('\ru\nazarov\crm\entities\Organization', $form->getVal('supplier')));
 				$app->setDate(new \DateTime($form->getVal('date')));
 				$app->setComment($form->getVal('comment'));
+                $app->setLegalEntity($_SESSION['le']);
 				$em->persist($app);
 				$em->flush($app);
 

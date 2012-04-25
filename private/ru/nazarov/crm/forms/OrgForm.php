@@ -6,7 +6,7 @@
 
 	class OrgForm extends Form {
 		public function validateName($value) {
-			return $this->em()->getRepository('\ru\nazarov\crm\entities\Organization')->findOneBy(array('name' => $value)) == null;
+			return $this->em()->getRepository('\ru\nazarov\crm\entities\Organization')->findOneBy(array('name' => $value, 'legalEntity' => $_SESSION['le'])) == null;
 		}
 
 		public function init() {

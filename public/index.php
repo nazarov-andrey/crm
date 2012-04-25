@@ -1,15 +1,16 @@
 <?php
-    $confDir = $_SERVER['DOCUMENT_ROOT'] . '/../private/config/';
+    $docroot = $_SERVER['DOCUMENT_ROOT'];
+    $confDir = $docroot . '/../private/config/';
     $myConf = $confDir . 'my.php';
 
     require_once $confDir . 'default.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/../private/SitebaseClassLoader.php';
+	require_once $docroot . '/../private/SitebaseClassLoader.php';
 
     if (file_exists($myConf)) {
         require_once $myConf;
     }
 
-	SitebaseClassLoader::create($_SERVER['DOCUMENT_ROOT'] . '/../private/')->register();
+	SitebaseClassLoader::create($docroot . '/../private/')->register();
 
 	use \ru\nazarov\sitebase\Facade;
 	use \ru\nazarov\sitebase\core\Application;

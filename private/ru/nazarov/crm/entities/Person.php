@@ -2,7 +2,7 @@
 	namespace ru\nazarov\crm\entities;
 
 	/**
-	 * @Entity
+	 * @Entity(repositoryClass="ru\nazarov\crm\entities\CrmEntityRepository")
 	 * @Table(name="person")
 	 */
 	class Person {
@@ -21,8 +21,10 @@
 		private $comment;
 		/** @OneToMany(targetEntity="Contact", mappedBy="person") */
 		private $contacts;
+        /** @Column(name="legal_entity", type="bigint")  */
+        private $legalEntity;
 
-		public function __construct() {
+        public function __construct() {
 			$this->contacts = new \Doctrine\Common\Collections\ArrayCollection();
 		}
 
@@ -69,5 +71,13 @@
 		public function getContacts() {
 			return $this->contacts;
 		}
-	}
+
+        public function setLegalEntity($legalEntity) {
+            $this->legalEntity = $legalEntity;
+        }
+
+        public function getLegalEntity() {
+            return $this->legalEntity;
+        }
+    }
 ?>

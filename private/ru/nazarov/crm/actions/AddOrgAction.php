@@ -19,6 +19,7 @@
 				$org->setCountry($form->getVal('country'));
 				$org->setPhone($form->getVal('phone'));
 				$org->setSite($form->getVal('site'));
+                $org->setLegalEntity($_SESSION['le']);
 
 				$em->persist($org);
 				$em->flush();

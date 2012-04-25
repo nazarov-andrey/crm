@@ -24,6 +24,7 @@
 				$p->setOrganization($em->find('\ru\nazarov\crm\entities\Organization', $form->getVal('org')));
 				$p->setPosition($form->getVal('pos'));
 				$p->setComment($form->getVal('comment'));
+                $p->setLegalEntity($_SESSION['le']);
 				$em->persist($p);
 
 				$contacts = $form->getVal(self::CONTACT_VALUES_KEY);

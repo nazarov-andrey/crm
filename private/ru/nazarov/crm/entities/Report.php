@@ -1,7 +1,7 @@
 <?php
 	namespace ru\nazarov\crm\entities;
 
-	/** @Entity @Table(name="report") */
+	/** @Entity(repositoryClass="ru\nazarov\crm\entities\CrmEntityRepository") @Table(name="report") */
 	class Report {
 		/** @id @Column(type="bigint") @GeneratedValue */
 		private $id;
@@ -11,8 +11,10 @@
 		private $date;
 		/** @Column(type="text")  */
 		private $comment;
+        /** @Column(name="legal_entity", type="bigint")  */
+        private $legalEntity;
 
-		public function setComment($comment) {
+        public function setComment($comment) {
 			$this->comment = $comment;
 		}
 
@@ -43,5 +45,13 @@
 		public function getId() {
 			return $this->id;
 		}
-	}
+
+        public function setLegalEntity($legalEntity) {
+            $this->legalEntity = $legalEntity;
+        }
+
+        public function getLegalEntity() {
+            return $this->legalEntity;
+        }
+    }
 ?>

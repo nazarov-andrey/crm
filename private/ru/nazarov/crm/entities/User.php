@@ -14,29 +14,20 @@
 		private $pass;
 		/** @Column(type="smallint")  */
 		private $super;
+        public function getId() {
+            return $this->id;
+        }
 
-		public function setLogin($login) {
-			$this->login = $login;
-		}
+        public function getLogin() {
+            return $this->login;
+        }
 
-		public function getLogin() {
-			return $this->login;
-		}
+        public function getPass() {
+            return $this->pass;
+        }
 
-		public function setPass($pass) {
-			$this->pass = $pass;
-		}
-
-		public function getPass() {
-			return $this->pass;
-		}
-
-		public function setSuper($super) {
-			$this->super = $super;
-		}
-
-		public function getSuper() {
-			return $this->super;
-		}
-	}
+        public function getSuper() {
+            return $this->super;
+        }
+    }
 ?>

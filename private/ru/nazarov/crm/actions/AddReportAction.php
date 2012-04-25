@@ -58,6 +58,7 @@
 				$r->setComment($form->getVal('comment'));
 				$r->setContact($em->find('\ru\nazarov\crm\entities\Contact', $form->getVal('contact')));
 				$r->setDate(new \DateTime($form->getVal('date')));
+                $r->setLegalEntity($_SESSION['le']);
 
 				$em->persist($r);
 				$em->flush();
