@@ -1,5 +1,5 @@
 .DS_Store
-private/tpl
+private/tpl/templates_c
 private/ru/nazarov/crm/proxies
 private/attachments
 db/myconfig
