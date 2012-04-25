@@ -1,5 +1,13 @@
 <?php
-	require_once '../private/SitebaseClassLoader.php';
+    $confDir = $_SERVER['DOCUMENT_ROOT'] . '/../private/config/';
+    $myConf = $confDir . 'my.php';
+
+    require_once $confDir . 'default.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/../private/SitebaseClassLoader.php';
+
+    if (file_exists($myConf)) {
+        require_once $myConf;
+    }
 
 	SitebaseClassLoader::create($_SERVER['DOCUMENT_ROOT'] . '/../private/')->register();
 
@@ -21,15 +29,6 @@
 			->allow('\ru\nazarov\crm\actions\UserAction')
 			->allow('\ru\nazarov\crm\actions\PrintAction'),
 	);
-
-	$conf = new stdClass();
-	$conf->entitiesPath = $_SERVER['DOCUMENT_ROOT'] . '/../private/ru/nazarov/crm/entities';
-	$conf->proxiesPath = $_SERVER['DOCUMENT_ROOT'] . '/../private/ru/nazarov/crm/proxies';
-	$conf->dbDriver = 'pdo_mysql';
-	$conf->dbHost = 'localhost';
-	$conf->dbName = 'italy';
-	$conf->dbUser = 'root';
-	$conf->dbPass = 'root';
 
 	$beans = new stdClass();
 	$beans->bc = BeanContainer::instance();
