@@ -1,18 +1,18 @@
-html, body { font-family:Verdana; font-size:12px; height: 100%; margin: 0px; padding: 0px; width: 100%; }
-body { overflow: visible; }
+html, body { font-family:Arial; font-size:12px; height:100%; margin:0px; padding:0px; width: 100%; }
 a, a:link, a:visited, a:hover { color:#000000; }
 a:hover { text-decoration: none; }
 a img { border:0px; }
 .header { background-image: url("/img/header.png"); background-repeat: repeat-x; height: 60px; position:relative; width: 100%; }
 .logo { left:35px; position:absolute; top:3px; }
-h1 { font-size:16px; margin:0px 0px 10px 120px; padding: 0px; }
+.content { float:left; padding-bottom: 30px; }
+h1 { font-size:16px; margin:0px 0px 10px 130px; padding: 0px; }
 h1.list { margin-left: 0px; }
 input, textarea { border:1px solid #000000; }
 .form-field { clear:left; font-size:14px; margin: 5px 0px; }
-.form-field-label { float:left; line-height:20px; padding-right: 10px; text-align:right; width: 110px; }
+.form-field-label { float:left; line-height:20px; padding-right: 10px; text-align:right; width: 120px; }
 .form-field-input, .form-field-val { float: left; }
 .form-field-input textarea { height: 75px; margin-left: 2px; width: 175px; }
-.form-field-error { color:#aa0000; margin-left: 10px; }
+.form-field-error { color:#aa0000; float:right; line-height:20px; margin-left: 10px; }
 .form-field-input input, .form-field-input textarea, .form-field-input select,
 .form-field-label input, .form-field-label textarea, .form-field-label select { font-size: 14px; }
 .form-field-rm:link, .form-field-rm:visited, .form-field-rm:link:hover { color:#aa0000; margin-left:5px; text-decoration: none }
@@ -29,66 +29,17 @@ input, textarea { border:1px solid #000000; }
 .top-menu-item:link, .top-menu-item:visited, .top-menu-item:hover { color:#ffffff; text-decoration: none; }
 .top-menu-item:hover { text-decoration: underline; }
 
-/*
-.tbl { border-collapse:collapse; font-size: 11px; }
-.tbl tr:hover { background-color:#fff8ea; }
-.tbl th { border-bottom: 1px solid #000000; }
-.tbl th, .tbl td { max-width:200px; min-width:50px; padding: 4px 10px; }
-.tbl td { vertical-align: top; }
-
-.org-tbl-name { text-align:left; }
-.org-tbl-type { text-align:right; }
-.org-tbl-phone { text-align:right; }
-.org-tbl-site { text-align:right; }
-.org-tbl-address { text-align:left; }
-.org-tbl-country{ text-align:right; }
-
-.person-tbl-name { text-align:left; }
-.person-tbl-org { text-align:right; }
-.person-tbl-pos { text-align:right; }
-.person-tbl-contact-header { text-align: center; }
-.person-tbl-contact-type { text-align:right; padding-right: 0px !important; }
-.person-tbl-contact { text-align:left; padding-left: 0px !important; }
-
-.report-tbl-id { text-align: right; min-width: 0px !important; }
-.report-tbl-person { text-align: right; }
-.report-tbl-contact-header {}
-.report-tbl-contact-type { text-align: right; padding-right: 0px !important; }
-.report-tbl-contact { text-align: left; padding-left: 0px !important; }
-.report-tbl-date { text-align: right; }
-.report-tbl-comment { text-align: left; }
-
-.app-tbl-id { text-align: right; min-width: 0px !important; }
-.app-tbl-client { text-align: right; }
-.app-tbl-supplier { text-align: right; }
-.app-tbl-date { text-align: right; }
-.app-tbl-attachments { text-align: right; }
-.app-tbl-comment { text-align: left; }
-
-th.person-tbl-name { vertical-align: bottom; }
-th.person-tbl-org { vertical-align: bottom; }
-th.person-tbl-pos { vertical-align: bottom; }
-th.person-tbl-contact { text-align: center; padding: 4px 0px; }
-th.person-tbl-contact-type { padding-right: 6px !important; }
-th.report-tbl-id { vertical-align: bottom; }
-th.report-tbl-person { vertical-align: bottom; }
-th.report-tbl-date { vertical-align: bottom; }
-th.report-tbl-comment { vertical-align: bottom; }
-th.report-tbl-contact { text-align: center; padding: 4px 0px; }
-th.report-tbl-contact-type { padding-right: 6px !important; }
-*/
-
 .tbl { border-collapse:collapse; font-size: 14px; }
 .tbl tr:hover { background-color:#fff8ea; }
 .tbl th { background-image: url('/img/tbl-header-bg.png'); border-top: 1px solid #f88500; border-bottom: 1px solid #f88500; color:#ffffff; height: 29px; font-weight: normal; padding: 0px 10px; text-shadow: black 1px 1px 3px; }
-.tbl td { border:1px solid #fbdca3; max-width:270px; min-width:50px; padding: 6px 10px; }
+.tbl td { border:1px solid #fbdca3; max-width:270px; min-width:50px; padding: 6px 10px; overflow: hidden; }
 .tbl td { vertical-align: top; }
 
 .org-tbl-name { text-align:left; }
 .org-tbl-type { text-align:right; }
 .org-tbl-phone { text-align:right; }
 .org-tbl-site { text-align:right; }
-.org-tbl-address { text-align:left; }
+.org-tbl-address { text-align:right; }
 .org-tbl-country{ text-align:right; }
 
 th.org-tbl-name { border-left: 1px solid #f88500; }
@@ -123,18 +74,19 @@ th.report-tbl-print { border-right: 1px solid #f88500; }
 th.app-tbl-id { border-left: 1px solid #f88500; }
 th.app-tbl-print { border-right: 1px solid #f88500; }
 
-
-/*th.person-tbl-name { vertical-align: bottom; }*/
-/*th.person-tbl-org { vertical-align: bottom; }*/
-/*th.person-tbl-pos { vertical-align: bottom; }*/
-/*th.person-tbl-contact { text-align: center; padding: 4px 0px; }*/
-/*th.person-tbl-contact-type { padding-right: 6px !important; }*/
-/*th.report-tbl-id { vertical-align: bottom; }*/
-/*th.report-tbl-person { vertical-align: bottom; }*/
-/*th.report-tbl-date { vertical-align: bottom; }*/
-/*th.report-tbl-comment { vertical-align: bottom; }*/
-/*th.report-tbl-contact { text-align: center; padding: 4px 0px; }*/
-/*th.report-tbl-contact-type { padding-right: 6px !important; }*/
-
 .app-print { border:1px dotted #000000; height:10cm; width: 12cm; }
 .report-print { border:1px dotted #000000; height:12cm; width: 14cm; }
+
+.store-tbl-id { text-align: right; min-width: 0px !important; }
+.store-tbl-code { text-align: right; }
+.store-tbl-desc { max-width: 200px !important; text-align: left; }
+.store-tbl-supcode { text-align: right; }
+.store-tbl-mancode { text-align: right; }
+.store-tbl-amount { text-align: right; }
+.store-tbl-minamount { text-align: right; }
+.store-tbl-comment { max-width: 200px !important;; text-align: left; }
+
+.store-tbl th a:link, .store-tbl th a:visited, .store-tbl th a:hover { color:#ffffff; text-decoration: none; }
+
+th.store-tbl-id { border-left: 1px solid #f88500; }
+th.store-tbl-comment { border-right: 1px solid #f88500; }

@@ -19,7 +19,7 @@ var PersonContact = new Class({
 				opt.setProperty('selected', 'selected');
 			}
 
-			opt.inject(select)
+			opt.inject(select);
 		});
 
 		select.inject(lbl);

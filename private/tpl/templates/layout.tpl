@@ -12,5 +12,5 @@
 	{if isset($top_menu)}{include file=$top_menu}{/if}
 </div>
 {if isset($left_menu)}{include file=$left_menu}{/if}
-<div style="float:left;">{include file=$content}</div>
+<div class="content">{include file=$content}</div>
 </body></html>
