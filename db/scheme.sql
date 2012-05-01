@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.62, for apple-darwin10.3.0 (i386)
+-- MySQL dump 10.13  Distrib 5.5.9, for osx10.6 (i386)
 --
--- Host: localhost    Database: crm
+-- Host: localhost    Database: italy
 -- ------------------------------------------------------
--- Server version	5.1.62
+-- Server version	5.5.9
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -106,7 +106,7 @@ CREATE TABLE `legal_entity` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,6 +179,26 @@ CREATE TABLE `report` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `store_item`
+--
+
+DROP TABLE IF EXISTS `store_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `store_item` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `supplier_code` varchar(255) NOT NULL,
+  `manufacturer_code` varchar(255) NOT NULL,
+  `amount` bigint(20) NOT NULL,
+  `min_amount` bigint(20) NOT NULL,
+  `comment` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `user`
 --
 
@@ -203,4 +223,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-04-25 17:36:03
+-- Dump completed on 2012-05-01 23:36:38
