@@ -58,11 +58,11 @@
 			}
 
 			$form->setFieldVals('supplier', array_map(
-				    function($org) { return (object) array('label' => $org->getName(), 'val' => $org->getId()); },
+				    function($org) { return (object) array('label' => htmlspecialchars($org->getName()), 'val' => $org->getId()); },
 					$em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array('type' => 1))
 				))
 				->setFieldVals('client', array_map(
-					function($org) { return (object) array('label' => $org->getName(), 'val' => $org->getId()); },
+					function($org) { return (object) array('label' => htmlspecialchars($org->getName()), 'val' => $org->getId()); },
 					$em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array('type' => 2))
 				));
 

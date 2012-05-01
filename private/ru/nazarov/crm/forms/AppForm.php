@@ -1,5 +1,5 @@
 <?php
-	namespace ru\nazarov\crm\Forms;
+	namespace ru\nazarov\crm\forms;
 
 	class AppForm extends Form {
 		public function init() {

@@ -56,7 +56,7 @@
 					$orgVals[] = (object) array('label' => $org->getType()->getCode() . 's', 'val' => null, 'disabled' => true);
 				}
 
-				$orgVals[] = (object) array('label' => str_repeat('&nbsp;', 6) . $org->getName(), 'val' => $org->getId());
+				$orgVals[] = (object) array('label' => str_repeat('&nbsp;', 6) . htmlspecialchars($org->getName()), 'val' => $org->getId());
 			}
 
 			$form->setFieldVals('org', $orgVals);
