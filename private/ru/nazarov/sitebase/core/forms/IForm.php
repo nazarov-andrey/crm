@@ -3,8 +3,8 @@
 
 	interface IForm extends \ru\nazarov\sitebase\core\IDependent {
 		function addField($name, $required = false);
-		function getVal($name);
-		function setVal($name, $val);
+		function get($name);
+		function set($name, $val);
 		function forField($name);
 		function addValidator(IValidator $validator, $error);
 		function validate();

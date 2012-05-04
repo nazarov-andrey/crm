@@ -29,8 +29,8 @@
 			if (!$form->isEmpty() && $form->validate()) {
 				$auth = $this->auth();
 
-				if ($auth->authenticate($form->getVal('login'), sha1($form->getVal('pass')))->check()) {
-                    $_SESSION['le'] = $form->getVal('legal_entity');
+				if ($auth->authenticate($form->get('login'), sha1($form->get('pass')))->check()) {
+                    $_SESSION['le'] = $form->get('legal_entity');
 					$this->app()->redirect('/');
 					return;
 				} else {
@@ -43,8 +43,8 @@
                 return (object) array('label' => $le->getName(), 'val' => $le->getId());
             }, $this->em()->getRepository('\ru\nazarov\crm\entities\LegalEntity')->findAll());
 
-            if (($form->getVal('legal_entity') === null) && (count($les) > 0)) {
-                $form->setVal('legal_entity', $les[0]->val);
+            if (($form->get('legal_entity') === null) && (count($les) > 0)) {
+                $form->set('legal_entity', $les[0]->val);
             }
 
             $form->setFieldVals('legal_entity', $les);

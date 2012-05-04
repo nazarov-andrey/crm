@@ -62,18 +62,18 @@
 
 		typeSelect.fireEvent('change');
 
-		{if ($form->getVal('org') != null)}
-		    orgsSelect.selectedIndex = orgs[{$form->getVal('type')}].indexOfFun(function (org) { return org.val == {$form->getVal('org')}; }) + 1;
+		{if ($form->get('org') != null)}
+		    orgsSelect.selectedIndex = orgs[{$form->get('type')}].indexOfFun(function (org) { return org.val == {$form->get('org')}; }) + 1;
 			orgsSelect.fireEvent('change');
 		{/if}
 
-		{if ($form->getVal('person') != null)}
-			personsSelect.selectedIndex = persons[{$form->getVal('org')}].indexOfFun(function (person) { return person.val == {$form->getVal('person')}; }) + 1;
+		{if ($form->get('person') != null)}
+			personsSelect.selectedIndex = persons[{$form->get('org')}].indexOfFun(function (person) { return person.val == {$form->get('person')}; }) + 1;
 			personsSelect.fireEvent('change');
 		{/if}
 
-		{if ($form->getVal('contact') != null)}
-			contactsSelect.selectedIndex = contacts[{$form->getVal('person')}].indexOfFun(function (contact) { return contact.val == {$form->getVal('contact')}; }) + 1;
+		{if ($form->get('contact') != null)}
+			contactsSelect.selectedIndex = contacts[{$form->get('person')}].indexOfFun(function (contact) { return contact.val == {$form->get('contact')}; }) + 1;
 		{/if}
 	});
 </script>

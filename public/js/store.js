@@ -41,6 +41,9 @@ var Store = new Class({
 			th.inject(tr);
 		}
 
+		var actsTh = new Element('th', { 'class': 'acts', text: 'Actions'});
+		actsTh.inject(tr);
+
 		tr.inject(this.tbody);
 	},
 
@@ -58,6 +61,13 @@ var Store = new Class({
 
 				(new Element('td', { 'class': field.cls, html:dp[i][field.dataField] })).inject(tr);
 			}
+
+			var actsTd = new Element('td', { 'class': 'acts'});
+			(new Element('a', { text: 'modify', href: '/?action=edit_store&id=' + dp[i].id})).inject(actsTd);
+			(new Element('br')).inject(actsTd);
+			(new Element('a', { text: 'delete', href: '/?action=remove_store&id=' + dp[i].id})).inject(actsTd);
+
+			actsTd.inject(tr);
 		}
 	},
 

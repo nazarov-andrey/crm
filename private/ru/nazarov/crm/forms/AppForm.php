@@ -11,7 +11,7 @@
 				->addFieldExt('notify_client', 'Notify client', Form::FIELD_INPUT_CHECKBOX)
 				->addFieldExt('attachment', '', Form::FIELD_NOT_RENDER)
 				->addFieldExt('submit', '&nbsp;', Form::FIELD_INPUT_SUBMIT)
-				->setVal('submit', 'save');
+				->set('submit', 'save');
 
 			return $this;
 		}

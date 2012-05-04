@@ -22,15 +22,15 @@
 
 			if (!$form->isEmpty() && $form->validate()) {
 				$app = new \ru\nazarov\crm\entities\Application();
-				$app->setClient($em->find('\ru\nazarov\crm\entities\Organization', $form->getVal('client')));
-				$app->setSupplier($em->find('\ru\nazarov\crm\entities\Organization', $form->getVal('supplier')));
-				$app->setDate(new \DateTime($form->getVal('date')));
-				$app->setComment($form->getVal('comment'));
+				$app->setClient($em->find('\ru\nazarov\crm\entities\Organization', $form->get('client')));
+				$app->setSupplier($em->find('\ru\nazarov\crm\entities\Organization', $form->get('supplier')));
+				$app->setDate(new \DateTime($form->get('date')));
+				$app->setComment($form->get('comment'));
                 $app->setLegalEntity($_SESSION['le']);
 				$em->persist($app);
 				$em->flush($app);
 
-				$attachments = $form->getVal(self::ATTACHMENT_KEY);
+				$attachments = $form->get(self::ATTACHMENT_KEY);
 
 				if ($attachments != null) {
 					$type = $em->getRepository('\ru\nazarov\crm\entities\AttachmentType')->findOneBy(array('code' => 'application'));

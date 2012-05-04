@@ -29,7 +29,7 @@
 			$field = new \stdClass();
             $field->name = $name;
             $field->required = $required;
-            $field->value = $this->request()->getValue($name);
+            $field->value = $this->request()->get($name);
             $field->validators = array();
 			$field->error = null;
 
@@ -93,7 +93,7 @@
             return true;
         }
 
-		public function setVal($name, $val) {
+		public function set($name, $val) {
 			$this->_fields[$name]->value = $val;
 		}
 
@@ -101,7 +101,7 @@
 			$this->_fields[$name]->error = $err;
 		}
 
-		public function getVal($name) {
+		public function get($name) {
 			return array_key_exists($name, $this->_fields) ? $this->_fields[$name]->value : null;
 		}
     }

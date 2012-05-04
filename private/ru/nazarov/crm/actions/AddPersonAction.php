@@ -20,17 +20,17 @@
 
 			if (!$form->isEmpty() && $form->validate()) {
 				$p = new \ru\nazarov\crm\entities\Person();
-				$p->setName($form->getVal('name'));
-				$p->setOrganization($em->find('\ru\nazarov\crm\entities\Organization', $form->getVal('org')));
-				$p->setPosition($form->getVal('pos'));
-				$p->setComment($form->getVal('comment'));
+				$p->setName($form->get('name'));
+				$p->setOrganization($em->find('\ru\nazarov\crm\entities\Organization', $form->get('org')));
+				$p->setPosition($form->get('pos'));
+				$p->setComment($form->get('comment'));
                 $p->setLegalEntity($_SESSION['le']);
 				$em->persist($p);
 
-				$contacts = $form->getVal(self::CONTACT_VALUES_KEY);
+				$contacts = $form->get(self::CONTACT_VALUES_KEY);
 
 				if ($contacts != null) {
-					foreach ($form->getVal(self::CONTACT_TYPES_KEY) as $i => $type) {
+					foreach ($form->get(self::CONTACT_TYPES_KEY) as $i => $type) {
 						$c = new \ru\nazarov\crm\entities\Contact();
 						$c->setPerson($p);
 						$c->setType($em->find('\ru\nazarov\crm\entities\ContactType', $type));
@@ -61,12 +61,12 @@
 
 			$form->setFieldVals('org', $orgVals);
 
-			if ($form->getVal('org') == null) {
-				$form->setVal('org', 'undef');
+			if ($form->get('org') == null) {
+				$form->set('org', 'undef');
 			}
 
-			if (count($types = $form->getVal(self::CONTACT_TYPES_KEY)) > 0) {
-				$view->set('contacts', array_map(function ($type, $val) { return (object) array('type' => $type, 'val' => $val); }, $types, $form->getVal(self::CONTACT_VALUES_KEY)));
+			if (count($types = $form->get(self::CONTACT_TYPES_KEY)) > 0) {
+				$view->set('contacts', array_map(function ($type, $val) { return (object) array('type' => $type, 'val' => $val); }, $types, $form->get(self::CONTACT_VALUES_KEY)));
 			}
 
 			parent::execute();

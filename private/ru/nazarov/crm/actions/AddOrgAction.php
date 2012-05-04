@@ -13,12 +13,12 @@
 
 			if (!$form->isEmpty() && $form->validate()) {
 				$org = new \ru\nazarov\crm\entities\Organization();
-				$org->setName($form->getVal('name'));
-				$org->setType($em->find('\ru\nazarov\crm\entities\OrganizationType', $form->getVal('type')));
-				$org->setAddress($form->getVal('address'));
-				$org->setCountry($form->getVal('country'));
-				$org->setPhone($form->getVal('phone'));
-				$org->setSite($form->getVal('site'));
+				$org->setName($form->get('name'));
+				$org->setType($em->find('\ru\nazarov\crm\entities\OrganizationType', $form->get('type')));
+				$org->setAddress($form->get('address'));
+				$org->setCountry($form->get('country'));
+				$org->setPhone($form->get('phone'));
+				$org->setSite($form->get('site'));
                 $org->setLegalEntity($_SESSION['le']);
 
 				$em->persist($org);

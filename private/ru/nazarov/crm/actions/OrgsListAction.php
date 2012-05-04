@@ -6,7 +6,7 @@
 			parent::prepareData();
 
 			$em = $this->em();
-			$type = $this->request()->getValue('type');
+			$type = $this->request()->get('type');
 			$types = $em->getRepository('\ru\nazarov\crm\entities\OrganizationType')->findAll();
 			$correctType = false;
 

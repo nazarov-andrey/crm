@@ -55,9 +55,9 @@
 
 			if (!$form->isEmpty() && $form->validate()) {
 				$r = new \ru\nazarov\crm\entities\Report();
-				$r->setComment($form->getVal('comment'));
-				$r->setContact($em->find('\ru\nazarov\crm\entities\Contact', $form->getVal('contact')));
-				$r->setDate(new \DateTime($form->getVal('date')));
+				$r->setComment($form->get('comment'));
+				$r->setContact($em->find('\ru\nazarov\crm\entities\Contact', $form->get('contact')));
+				$r->setDate(new \DateTime($form->get('date')));
                 $r->setLegalEntity($_SESSION['le']);
 
 				$em->persist($r);

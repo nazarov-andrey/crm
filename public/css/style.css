@@ -4,8 +4,9 @@ a:hover { text-decoration: none; }
 a img { border:0px; }
 .logo { left:35px; line-height:60px; position:absolute; top:3px; }
 .content { float:left; padding-bottom: 30px; }
-h1 { font-size:16px; margin:0px 0px 10px 130px; padding: 0px; }
+h1 { font-size:18px; margin:0px 0px 10px 130px; padding: 0px; }
 h1.list { margin-left: 0px; }
+h1.error { color:#aa0000; margin:0px 0px 10px 0px; }
 input, textarea { border:1px solid #000000; }
 .form-field { clear:left; font-size:14px; margin: 5px 0px; }
 .form-field-label { float:left; line-height:20px; padding-right: 10px; text-align:right; width: 120px; }
@@ -29,6 +30,8 @@ input, textarea { border:1px solid #000000; }
 .tbl { border-collapse:collapse; font-size: 14px; }
 .tbl td { border-width:1px; border-style: solid; max-width:270px; min-width:50px; padding: 6px 10px; overflow: hidden; }
 .tbl td { vertical-align: top; }
+.tbl td.acts, .tbl th.acts { text-align: left; }
+.tbl th.acts { border-right: 1px; }
 
 .org-tbl-name { text-align:left; }
 .org-tbl-type { text-align:right; }
@@ -84,7 +87,6 @@ th.app-tbl-print { border-right-width: 1px; }
 .store-tbl th a:link, .store-tbl th a:visited, .store-tbl th a:hover { color:#ffffff; text-decoration: none; }
 
 th.store-tbl-id { border-left-width: 1px; }
-th.store-tbl-comment { border-right-width: 1px; }
 
 .header { background-repeat: repeat-x; height: 60px; position:relative; width: 100%; }
 .left-menu-item { float:right; display:block; margin-right:20px; height: 59px; position:relative; width: 156px; }

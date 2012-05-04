@@ -8,7 +8,7 @@
 			$em = $this->em();
 
 			$orgs = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC'));
-			$orgId = $this->request()->getValue('org');
+			$orgId = $this->request()->get('org');
 
 			foreach ($orgs as $org) {
 				if ($org->getId() == $orgId) {

@@ -5,7 +5,7 @@
 		public function prepareData() {
 			parent::prepareData();
 
-			if (($id = $this->request()->getValue('id')) === null) {
+			if (($id = $this->request()->get('id')) === null) {
 				throw new \ru\nazarov\sitebase\core\exceptions\SitebaseException('Wrong report id');
 			}
 

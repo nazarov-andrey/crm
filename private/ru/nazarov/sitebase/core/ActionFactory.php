@@ -12,7 +12,7 @@
 		}
 
 		public function createAction(IRequest $req) {
-			$act = $req->getValue('action');
+			$act = $req->get('action');
 
 			if ($act == null) {
 				return null;

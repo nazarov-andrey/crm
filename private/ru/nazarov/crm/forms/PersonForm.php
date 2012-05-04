@@ -19,7 +19,7 @@
 		}
 
 		public function validateContactsNum($value) {
-			return count($this->getVal('types')) == count($this->getVal('contacts'));
+			return count($this->get('types')) == count($this->get('contacts'));
 		}
 
 		public function validateContacts($value) {
@@ -47,7 +47,7 @@
 					->addValidator(new \ru\nazarov\sitebase\core\forms\MethodValidator($this, 'validateContactsNum'), 'Contacts number is not match types number')
 					->addValidator(new \ru\nazarov\sitebase\core\forms\MethodValidator($this, 'validateContacts'), 'Empty contact is not allowed')
 				->addFieldExt('submit', '&nbsp;', Form::FIELD_INPUT_SUBMIT)
-				->setVal('submit', 'add');
+				->set('submit', 'add');
 
 			return $this;
 		}

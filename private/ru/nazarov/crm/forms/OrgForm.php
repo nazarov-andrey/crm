@@ -19,7 +19,7 @@
 				->addFieldExt('address', 'Address')
 				->addFieldExt('country', 'Country')
 				->addFieldExt('submit', '&nbsp;', Form::FIELD_INPUT_SUBMIT)
-				->setVal('submit', 'add');
+				->set('submit', 'add');
 
 			return $this;
 		}

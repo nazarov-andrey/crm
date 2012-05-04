@@ -6,7 +6,7 @@
 			parent::prepareData();
 
 			$em = $this->em();
-			$orgId = $this->request()->getValue('org');
+			$orgId = $this->request()->get('org');
 			$orgs = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC'));
 			$orgIdCorrect = false;
 

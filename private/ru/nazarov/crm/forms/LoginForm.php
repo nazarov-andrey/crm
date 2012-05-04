@@ -11,7 +11,7 @@
 				->addFieldExt('pass', 'Password', Form::FIELD_INPUT_PASSWORD)
                 ->addFieldExt('legal_entity', 'Legal entity', Form::FIELD_SELECT)
 				->addFieldExt('submit', '&nbsp;', Form::FIELD_INPUT_SUBMIT)
-				->setVal('submit', 'login');
+				->set('submit', 'login');
 
 			return $this;
 		}
