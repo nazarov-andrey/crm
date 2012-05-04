@@ -2,3 +2,5 @@
 .left-menu-item { background-image: url("/img/easyker/bt.png"); }
 .left-menu-item:hover { background-image: url("/img/easyker/bt-hover.png"); }
 .tbl th { background-image: url('/img/easyker/tbl-header-bg.png'); border-color:#f88500; }
+.tbl td { border-color: #fbdca3; }
+.tbl tr:hover { background-color:#fff8ea; }

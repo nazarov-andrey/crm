@@ -48,7 +48,7 @@
             $view = $this->view();
 
 			$view->setLayout('layout.tpl');
-            $view->set('le', $this->em()->find('ru\nazarov\crm\entities\LegalEntity', isset($_SESSION['le']) ? $_SESSION['le'] : 1));
+            $view->set('le', isset($_SESSION['le']) ? $this->em()->find('ru\nazarov\crm\entities\LegalEntity', $_SESSION['le']) : null);
 		}
 
 		public function execute() {

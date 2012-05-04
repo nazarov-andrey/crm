@@ -2,7 +2,7 @@ html, body { font-family:Arial; font-size:12px; height:100%; margin:0px; padding
 a, a:link, a:visited, a:hover { color:#000000; }
 a:hover { text-decoration: none; }
 a img { border:0px; }
-.logo { left:35px; position:absolute; top:3px; }
+.logo { left:35px; line-height:60px; position:absolute; top:3px; }
 .content { float:left; padding-bottom: 30px; }
 h1 { font-size:16px; margin:0px 0px 10px 130px; padding: 0px; }
 h1.list { margin-left: 0px; }
@@ -27,10 +27,8 @@ input, textarea { border:1px solid #000000; }
 .top-menu-item:hover { text-decoration: underline; }
 
 .tbl { border-collapse:collapse; font-size: 14px; }
-.tbl tr:hover { background-color:#fff8ea; }
-.tbl td { border:1px solid #fbdca3; max-width:270px; min-width:50px; padding: 6px 10px; overflow: hidden; }
+.tbl td { border-width:1px; border-style: solid; max-width:270px; min-width:50px; padding: 6px 10px; overflow: hidden; }
 .tbl td { vertical-align: top; }
-
 
 .org-tbl-name { text-align:left; }
 .org-tbl-type { text-align:right; }
@@ -39,7 +37,7 @@ input, textarea { border:1px solid #000000; }
 .org-tbl-address { text-align:right; }
 .org-tbl-country{ text-align:right; }
 
-th.org-tbl-name { border-left-width: 1px; }
+th.org-tbl-name { border-left-width: 1px; border-left-style: solid;}
 th.org-tbl-country { border-right-width: 1px; }
 
 .person-tbl-name { text-align:left; }
@@ -90,4 +88,4 @@ th.store-tbl-comment { border-right-width: 1px; }
 
 .header { background-repeat: repeat-x; height: 60px; position:relative; width: 100%; }
 .left-menu-item { float:right; display:block; margin-right:20px; height: 59px; position:relative; width: 156px; }
-.tbl th { boder-top-width:1px; border-bottom-width:1px; border-top-style:solid; border-bottom-style:solid; color:#ffffff; height: 29px; font-weight: normal; padding: 0px 10px; text-shadow: black 1px 1px 3px; }
+.tbl th { /*boder-top-width:1px; border-bottom-width:1px; border-top-style:solid; border-bottom-style:solid;*/border-top-width: 1px; border-bottom-width: 1px; border-style: solid; color:#ffffff; height: 29px; font-weight: normal; padding: 0px 10px; text-shadow: black 1px 1px 3px; }

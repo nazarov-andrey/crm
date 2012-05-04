@@ -1,0 +1,6 @@
+.header { background-image: url("/img/italkem/header.png"); }
+.left-menu-item { background-image: url("/img/italkem/bt.png"); }
+.left-menu-item:hover { background-image: url("/img/italkem/bt-hover.png"); }
+.tbl th { background-image: url('/img/italkem/tbl-header-bg.png'); border-color:#c4bfbf; }
+.tbl td { border-color: #e0e0e0; }
+.tbl tr:hover { background-color:#f4f4f4; }
