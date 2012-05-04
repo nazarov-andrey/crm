@@ -2,7 +2,6 @@ html, body { font-family:Arial; font-size:12px; height:100%; margin:0px; padding
 a, a:link, a:visited, a:hover { color:#000000; }
 a:hover { text-decoration: none; }
 a img { border:0px; }
-.header { background-image: url("/img/header.png"); background-repeat: repeat-x; height: 60px; position:relative; width: 100%; }
 .logo { left:35px; position:absolute; top:3px; }
 .content { float:left; padding-bottom: 30px; }
 h1 { font-size:16px; margin:0px 0px 10px 130px; padding: 0px; }
@@ -18,8 +17,6 @@ input, textarea { border:1px solid #000000; }
 .form-field-rm:link, .form-field-rm:visited, .form-field-rm:link:hover { color:#aa0000; margin-left:5px; text-decoration: none }
 
 .left-menu { float:left; width: 220px; }
-.left-menu-item { background-image: url("/img/bt.png"); float:right; display:block; margin-right:20px; height: 59px; position:relative; width: 156px; }
-.left-menu-item:hover { background-image: url("/img/bt-hover.png"); }
 .left-menu-item img { position: absolute; }
 .left-menu-item { line-height: 59px; padding-left: 10px;}
 
@@ -31,27 +28,27 @@ input, textarea { border:1px solid #000000; }
 
 .tbl { border-collapse:collapse; font-size: 14px; }
 .tbl tr:hover { background-color:#fff8ea; }
-.tbl th { background-image: url('/img/tbl-header-bg.png'); border-top: 1px solid #f88500; border-bottom: 1px solid #f88500; color:#ffffff; height: 29px; font-weight: normal; padding: 0px 10px; text-shadow: black 1px 1px 3px; }
 .tbl td { border:1px solid #fbdca3; max-width:270px; min-width:50px; padding: 6px 10px; overflow: hidden; }
 .tbl td { vertical-align: top; }
 
+
 .org-tbl-name { text-align:left; }
 .org-tbl-type { text-align:right; }
-.org-tbl-phone { text-align:right; }
-.org-tbl-site { text-align:right; }
+.org-tbl-phone { text-align:right; max-width:150px !important;}
+.org-tbl-site { text-align:right; max-width:150px !important;}
 .org-tbl-address { text-align:right; }
 .org-tbl-country{ text-align:right; }
 
-th.org-tbl-name { border-left: 1px solid #f88500; }
-th.org-tbl-country { border-right: 1px solid #f88500; }
+th.org-tbl-name { border-left-width: 1px; }
+th.org-tbl-country { border-right-width: 1px; }
 
 .person-tbl-name { text-align:left; }
 .person-tbl-org { text-align:right; }
 .person-tbl-pos { text-align:right; }
 .person-tbl-contact { text-align:left; }
 
-th.person-tbl-name { border-left: 1px solid #f88500; }
-th.person-tbl-contact { border-right: 1px solid #f88500; }
+th.person-tbl-name { border-left-width: 1px; }
+th.person-tbl-contact { border-right-width: 1px; }
 
 .report-tbl-id { text-align: right; min-width: 0px !important; }
 .report-tbl-person { text-align: right; }
@@ -60,8 +57,8 @@ th.person-tbl-contact { border-right: 1px solid #f88500; }
 .report-tbl-comment { text-align: left; }
 .report-tbl-print { text-align: left; }
 
-th.report-tbl-id { border-left: 1px solid #f88500; }
-th.report-tbl-print { border-right: 1px solid #f88500; }
+th.report-tbl-id { border-left-width: 1px; }
+th.report-tbl-print { border-right-width: 1px; }
 
 .app-tbl-id { text-align: right; min-width: 0px !important; }
 .app-tbl-client { text-align: right; }
@@ -71,8 +68,8 @@ th.report-tbl-print { border-right: 1px solid #f88500; }
 .app-tbl-comment { text-align: left; }
 .app-tbl-print { text-align: left; }
 
-th.app-tbl-id { border-left: 1px solid #f88500; }
-th.app-tbl-print { border-right: 1px solid #f88500; }
+th.app-tbl-id { border-left-width: 1px; }
+th.app-tbl-print { border-right-width: 1px; }
 
 .app-print { border:1px dotted #000000; height:10cm; width: 12cm; }
 .report-print { border:1px dotted #000000; height:12cm; width: 14cm; }
@@ -88,5 +85,9 @@ th.app-tbl-print { border-right: 1px solid #f88500; }
 
 .store-tbl th a:link, .store-tbl th a:visited, .store-tbl th a:hover { color:#ffffff; text-decoration: none; }
 
-th.store-tbl-id { border-left: 1px solid #f88500; }
-th.store-tbl-comment { border-right: 1px solid #f88500; }
+th.store-tbl-id { border-left-width: 1px; }
+th.store-tbl-comment { border-right-width: 1px; }
+
+.header { background-repeat: repeat-x; height: 60px; position:relative; width: 100%; }
+.left-menu-item { float:right; display:block; margin-right:20px; height: 59px; position:relative; width: 156px; }
+.tbl th { boder-top-width:1px; border-bottom-width:1px; border-top-style:solid; border-bottom-style:solid; color:#ffffff; height: 29px; font-weight: normal; padding: 0px 10px; text-shadow: black 1px 1px 3px; }

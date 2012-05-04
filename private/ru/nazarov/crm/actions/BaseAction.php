@@ -45,7 +45,10 @@
 		}
 
 		protected function prepareData() {
-			$this->view()->setLayout('layout.tpl');
+            $view = $this->view();
+
+			$view->setLayout('layout.tpl');
+            $view->set('le', $this->em()->find('ru\nazarov\crm\entities\LegalEntity', isset($_SESSION['le']) ? $_SESSION['le'] : 1));
 		}
 
 		public function execute() {

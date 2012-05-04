@@ -1,0 +1,4 @@
+.header { background-image: url("/img/obrastone/header.png"); }
+.left-menu-item { background-image: url("/img/obrastone/bt.png"); }
+.left-menu-item:hover { background-image: url("/img/obrastone/bt-hover.png"); }
+.tbl th { background-image: url('/img/obrastone/tbl-header-bg.png'); border-color:#a7e5ff; }

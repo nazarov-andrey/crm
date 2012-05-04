@@ -7,6 +7,8 @@
 		private $id;
 		/** @Column(length=255)  */
 		private $name;
+        /** @Column(length=255, name="res_basename") */
+        private $resBasename;
 
         public function setId($id) {
             $this->id = $id;
@@ -22,6 +24,10 @@
 
         public function getName() {
             return $this->name;
+        }
+
+        public function getResBasename() {
+            return $this->resBasename;
         }
     }
 ?>
