@@ -1,4 +1,4 @@
-html, body { font-family:Arial; font-size:12px; height:100%; margin:0px; padding:0px; width: 100%; }
+html, body { font-family:Arial; font-size:12px; height:100%; margin:0px; min-width:1280px; padding:0px; width: 100%; }
 a, a:link, a:visited, a:hover { color:#000000; }
 a:hover { text-decoration: none; }
 a img { border:0px; }
@@ -40,8 +40,7 @@ input, textarea { border:1px solid #000000; }
 .org-tbl-address { text-align:right; }
 .org-tbl-country{ text-align:right; }
 
-th.org-tbl-name { border-left-width: 1px; border-left-style: solid;}
-th.org-tbl-country { border-right-width: 1px; }
+th.org-tbl-name { border-left-width: 1px; }
 
 .person-tbl-name { text-align:left; }
 .person-tbl-org { text-align:right; }

@@ -1,57 +1,37 @@
 <?php
     namespace ru\nazarov\crm\actions;
 
-    use \ru\nazarov\sitebase\core\Application;
-    use \ru\nazarov\crm\forms\StoreItemForm;
-
-    class EditStoreAction extends UserAction {
-        protected $_item = null;
-
-        protected function prepareData() {
-            parent::prepareData();
-
-            $form = $form = $this->prepareForm(new \ru\nazarov\crm\forms\StoreItemForm('store-item-form', 'Edit store item', '/?action=edit_store&id=' . $this->_item->getId(), \ru\nazarov\crm\forms\Form::METHOD_POST));
-            $form->set('code', $this->_item->getCode());
-            $form->set('desc', $this->_item->getDescription());
-            $form->set('mancode', $this->_item->getManufacturerCode());
-            $form->set('supcode', $this->_item->getSupplierCode());
-            $form->set('amount', $this->_item->getAmount());
-            $form->set('minamount', $this->_item->getMinAmount());
-            $form->set('comment', $this->_item->getComment());
-
-            $this->view()->set('content', 'form.tpl')
-                ->set('form', $form);
+    class EditStoreAction extends AbstractEditAction {
+        public function __construct() {
+            parent::__construct('\ru\nazarov\crm\entities\StoreItem', 'Invalid store item id', '/?action=store', '\ru\nazarov\crm\forms\StoreItemForm', 'store-item-form', 'Edit store item', '/?action=edit_store', \ru\nazarov\crm\forms\Form::METHOD_POST);
         }
 
-        public function execute() {
-            $req = $this->request();
-            $id = $req->get('id');
+        protected function fillSelects() {}
 
-            if ($id === null || (($this->_item = $this->em()->find('\ru\nazarov\crm\entities\StoreItem', $id)) == null)) {
-                $this->error('Invalid store item id', isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null);
-                return;
-            }
+        protected function setItemFields() {
+            $form = $this->_form;
+            $item = $this->_item;
 
-            if ($req->get('submit') !== null) {
-                $form = $form = $this->prepareForm(new \ru\nazarov\crm\forms\StoreItemForm('', '', '', \ru\nazarov\crm\forms\Form::METHOD_POST));
-                $em = $this->em();
+            $item->setCode($form->get('code'));
+            $item->setDescription($form->get('desc'));
+            $item->setManufacturerCode($form->get('mancode'));
+            $item->setSupplierCode($form->get('supcode'));
+            $item->setAmount($form->get('amount'));
+            $item->setMinAmount($form->get('minamount'));
+            $item->setComment($form->get('comment'));
+        }
 
-                $this->_item = $em->find('\ru\nazarov\crm\entities\StoreItem', $id);
-                $this->_item->setCode($form->get('code'));
-                $this->_item->setDescription($form->get('desc'));
-                $this->_item->setManufacturerCode($form->get('mancode'));
-                $this->_item->setSupplierCode($form->get('supcode'));
-                $this->_item->setAmount($form->get('amount'));
-                $this->_item->setMinAmount($form->get('minamount'));
-                $this->_item->setComment($form->get('comment'));
+        protected function setFormFields() {
+            $form = $this->_form;
+            $item = $this->_item;
 
-                $em->flush();
-                Application::instance()->redirect('/?action=store');
-
-                return;
-            }
-
-            parent::execute();
+            $form->set('code', $item->getCode());
+            $form->set('desc', $item->getDescription());
+            $form->set('mancode', $item->getManufacturerCode());
+            $form->set('supcode', $item->getSupplierCode());
+            $form->set('amount', $item->getAmount());
+            $form->set('minamount', $item->getMinAmount());
+            $form->set('comment', $item->getComment());
         }
     }
 ?>

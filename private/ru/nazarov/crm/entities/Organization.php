@@ -17,9 +17,7 @@
 		private $address;
 		/** @Column(length=255)  */
 		private $country;
-		/**
-		 * @OneToMany(targetEntity="Person", mappedBy="organization")
-		 **/
+		/** @OneToMany(targetEntity="Person", mappedBy="organization", cascade={"remove"}) */
 		private $persons;
 		/** @Column(name="type", type="bigint")  */
 		private $typeId;

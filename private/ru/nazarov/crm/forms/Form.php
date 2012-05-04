@@ -19,13 +19,15 @@
 		protected $_method;
 		protected $_enctype;
 		protected $_action;
+        protected $_submitVal;
 
-		public function __construct($id, $name, $action, $method, $enctype = null) {
+		public function __construct($id, $name, $action, $method, $enctype = null, $submitVal = 'add') {
 			$this->_id = $id;
 			$this->_name = $name;
 			$this->_method = $method;
 			$this->_enctype = $enctype;
 			$this->_action = $action;
+            $this->_submitVal = $submitVal;
 		}
 
 		protected function createField($name) {

@@ -19,7 +19,7 @@
 		private $position;
 		/** @Column(type="text") */
 		private $comment;
-		/** @OneToMany(targetEntity="Contact", mappedBy="person") */
+		/** @OneToMany(targetEntity="Contact", mappedBy="person", cascade={"remove"}) */
 		private $contacts;
         /** @Column(name="legal_entity", type="bigint")  */
         private $legalEntity;
