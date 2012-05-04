@@ -16,8 +16,13 @@
 		});
 
 		var select = selects[0];
+		var opts = opts[this.options[this.selectedIndex].value];
 
-	    opts[this.options[this.selectedIndex].value].each(function(optData) {
+		if (opts == null || opts == 'undefined') {
+			return;
+		}
+
+	    opts.each(function(optData) {
 	        var opt = new Element('option', {
 	        	value: optData.val,
 				html: optData.label

@@ -17,8 +17,9 @@
         protected $_formMethod;
         protected $_formCls;
         protected $_formEnctype;
+        protected $_tpl;
 
-        public function __construct($entityCls, $invalidIdMsg, $redirectUrl, $formCls, $formId, $formName, $formAct, $formMethod, $formEnctype = null) {
+        public function __construct($entityCls, $invalidIdMsg, $redirectUrl, $formCls, $formId, $formName, $formAct, $formMethod, $formEnctype = null, $tpl = 'form.tpl') {
             $this->_entityCls = $entityCls;
             $this->_invalidIdMsg = $invalidIdMsg;
             $this->_redirectUrl = $redirectUrl;
@@ -27,6 +28,7 @@
             $this->_formAct = $formAct;
             $this->_formMethod = $formMethod;
             $this->_formCls = $formCls;
+            $this->_tpl = $tpl;
         }
 
         protected abstract function setItemFields();
@@ -44,7 +46,7 @@
             }
 
             $this->fillSelects();
-            $this->view()->set('content', 'form.tpl')
+            $this->view()->set('content', $this->_tpl)
                 ->set('form', $this->_form);
         }
 

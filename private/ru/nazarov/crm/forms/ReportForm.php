@@ -10,7 +10,7 @@
 				->addFieldExt('date', 'Date', null, true)
 				->addFieldExt('comment', 'Comment', Form::FIELD_TEXTAREA)
 				->addFieldExt('submit', '&nbsp;', Form::FIELD_INPUT_SUBMIT)
-				->set('submit', 'save');
+				->set('submit', $this->_submitVal);
 
 			return $this;
 		}

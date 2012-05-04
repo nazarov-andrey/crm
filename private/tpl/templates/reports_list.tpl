@@ -14,7 +14,7 @@ Filter by organization:<select id="filter"><option>any</option>{foreach $orgs as
 		<th class="report-tbl-date">Date</th>
 		<th class="report-tbl-contact">Contact</th>
 		<th class="report-tbl-comment">Comment</th>
-		<th class="report-tbl-print"></th>
+		<th class="acts">Actions</th>
 	</tr>
 	{foreach $reports as $i => $report}
 		{assign var="contact" value=$report->getContact()}
@@ -25,7 +25,7 @@ Filter by organization:<select id="filter"><option>any</option>{foreach $orgs as
 			{*<td class="report-tbl-contact-type">{$contact->getType()->getCode()}:</td>*}
 			<td class="report-tbl-contact">{$contact->getType()->getCode()}:&nbsp;{$contact->getValue()}</td>
 			<td class="report-tbl-comment">{$report->getComment()|nl2br}</td>
-			<td class="report-tbl-print"><a href="/?action=report_print&id={$report->getId()}">print</a></td>
+			<td class="report-tbl-print"><a href="/?action=edit_report&id={$report->getId()}">modify</a><br /><a href="/?action=report_print&id={$report->getId()}">print</a><br /><a href="/?action=remove_report&id={$report->getId()}">delete</a></td>
 		</tr>
 	{/foreach}
 </table>

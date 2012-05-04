@@ -52,6 +52,10 @@
 			}
 		}
 
+        public function getBean($beanStr) {
+            return isset($this->_beans[$beanStr]) ? $this->_beans[$beanStr] : null;
+        }
+
 		public static function instance() {
 			if (self::$_instance == null) {
 				self::$_instance = new self();

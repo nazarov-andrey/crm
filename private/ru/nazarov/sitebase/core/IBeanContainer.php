@@ -6,5 +6,6 @@
 		function addDependency(IDependent $dep, $injectionStr, $beanStr);
 		function inject(IDependent $into);
 		function injectAll();
+        function getBean($beanStr);
 	}
 ?>

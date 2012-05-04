@@ -5,48 +5,11 @@
 		protected function prepareData() {
 			parent::prepareData();
 
-			$em = $this->em();
-			$orgsSrc = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findAll();
-			$orgs = array();
-			$personsSrc = $em->getRepository('\ru\nazarov\crm\entities\Person')->findAll();
-			$persons = array();
-			$contactsSrc = $em->getRepository('\ru\nazarov\crm\entities\Contact')->findAll();
-			$contacts = array();
-
-			foreach ($orgsSrc as $org) {
-				$type = $org->getType()->getId();
-
-				if (!array_key_exists($type, $orgs)) {
-					$orgs[$type] = array();
-				}
-
-				$orgs[$type][] = (object) array('label' => $org->getName(), 'val' => $org->getId());
-			}
-
-			foreach ($personsSrc as $person) {
-				$org = $person->getOrganization()->getId();
-
-				if (!array_key_exists($org, $persons)) {
-					$persons[$org] = array();
-				}
-
-				$persons[$org][] = (object) array('label' => $person->getName(), 'val' => $person->getId());
-			}
-
-			foreach ($contactsSrc as $contact) {
-				$person = $contact->getPerson()->getId();
-
-				if (!array_key_exists($person, $contacts)) {
-					$contacts[$person] = array();
-				}
-
-				$contacts[$person][] = (object) array('label' => $contact->getType()->getCode() . '(' . $contact->getValue() . ')', 'val' => $contact->getId());
-			}
-
+            $selectsDp = \ru\nazarov\sitebase\Facade::getReportSelectsDps();
 			$this->view()->set('content', 'report_form.tpl')
-				->set('orgs', $orgs)
-				->set('persons', $persons)
-				->set('contacts', $contacts);
+				->set('orgs', $selectsDp->orgs)
+				->set('persons', $selectsDp->persons)
+				->set('contacts', $selectsDp->contacts);
 		}
 
 		public function execute() {

@@ -31,7 +31,7 @@ input, textarea { border:1px solid #000000; }
 .tbl td { border-width:1px; border-style: solid; max-width:270px; min-width:50px; padding: 6px 10px; overflow: hidden; }
 .tbl td { vertical-align: top; }
 .tbl td.acts, .tbl th.acts { text-align: left; }
-.tbl th.acts { border-right: 1px; }
+.tbl th.acts { border-right-width: 1px; }
 
 .org-tbl-name { text-align:left; }
 .org-tbl-type { text-align:right; }
@@ -55,10 +55,8 @@ th.person-tbl-contact { border-right-width: 1px; }
 .report-tbl-contact { text-align: left; }
 .report-tbl-date { text-align: right; }
 .report-tbl-comment { text-align: left; }
-.report-tbl-print { text-align: left; }
 
 th.report-tbl-id { border-left-width: 1px; }
-th.report-tbl-print { border-right-width: 1px; }
 
 .app-tbl-id { text-align: right; min-width: 0px !important; }
 .app-tbl-client { text-align: right; }

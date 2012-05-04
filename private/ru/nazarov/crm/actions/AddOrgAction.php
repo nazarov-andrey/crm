@@ -9,7 +9,7 @@
 
 		public function execute() {
 			$em = $this->em();
-			$form = $this->prepareForm(new \ru\nazarov\crm\forms\OrgForm('org-form', 'Add organization', '/?action=add_org', \ru\nazarov\crm\forms\Form::METHOD_POST));
+			$form = $this->prepareForm(new \ru\nazarov\crm\forms\AddOrgForm('org-form', 'Add organization', '/?action=add_org', \ru\nazarov\crm\forms\Form::METHOD_POST));
 
 			if (!$form->isEmpty() && $form->validate()) {
 				$org = new \ru\nazarov\crm\entities\Organization();

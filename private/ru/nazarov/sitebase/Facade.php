@@ -6,6 +6,7 @@
 	use \ru\nazarov\sitebase\core\CoreFactory;
 	use \ru\nazarov\sitebase\core\Uploader;
 	use \ru\nazarov\crm\Auth;
+    use \stdClass;
 
 	class Facade {
 		const BEAN_ACTION_FACTORY = 'facade_bean_action_factory';
@@ -60,5 +61,56 @@
 				$actionFactory->createErrorAction($e->getMessage())->execute();
 			}
 		}
+
+        public static function getReportSelectsDps() {
+            $bc = \ru\nazarov\sitebase\core\BeanContainer::instance();
+
+            if (($em = $bc->getBean(self::BEAN_ENTITY_MANAGER)) == null) {
+                throw new \ru\nazarov\sitebase\core\exceptions\SitebaseException('Unknown bean \'' . self::BEAN_ENTITY_MANAGER . '\'');
+            }
+
+            $orgsSrc = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findAll();
+            $orgs = array();
+            $personsSrc = $em->getRepository('\ru\nazarov\crm\entities\Person')->findAll();
+            $persons = array();
+            $contactsSrc = $em->getRepository('\ru\nazarov\crm\entities\Contact')->findAll();
+            $contacts = array();
+
+            foreach ($orgsSrc as $org) {
+                $type = $org->getType()->getId();
+
+                if (!array_key_exists($type, $orgs)) {
+                    $orgs[$type] = array();
+                }
+
+                $orgs[$type][] = (object) array('label' => $org->getName(), 'val' => $org->getId());
+            }
+
+            foreach ($personsSrc as $person) {
+                $org = $person->getOrganization()->getId();
+
+                if (!array_key_exists($org, $persons)) {
+                    $persons[$org] = array();
+                }
+
+                $persons[$org][] = (object) array('label' => $person->getName(), 'val' => $person->getId());
+            }
+
+            foreach ($contactsSrc as $contact) {
+                $person = $contact->getPerson()->getId();
+
+                if (!array_key_exists($person, $contacts)) {
+                    $contacts[$person] = array();
+                }
+
+                $contacts[$person][] = (object) array('label' => $contact->getType()->getCode() . '(' . $contact->getValue() . ')', 'val' => $contact->getId());
+            }
+
+            return (object) array(
+                'orgs' => $orgs,
+                'persons' => $persons,
+                'contacts' => $contacts,
+            );
+        }
 	}
 ?>
