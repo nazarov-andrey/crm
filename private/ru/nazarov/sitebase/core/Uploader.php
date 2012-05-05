@@ -15,7 +15,7 @@
 		}
         
         public function upload($tmpName, $srcName = NULL) {
-            $dst = $this->request()->getValue('DOCUMENT_ROOT') . $this->_path . '/';
+            $dst = $this->request()->get('DOCUMENT_ROOT') . $this->_path . '/';
             
             if ($srcName != null) {
                 $filename = $srcName;

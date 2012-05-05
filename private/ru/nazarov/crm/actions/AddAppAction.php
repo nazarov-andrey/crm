@@ -28,31 +28,12 @@
 				$app->setComment($form->get('comment'));
                 $app->setLegalEntity($_SESSION['le']);
 				$em->persist($app);
-				$em->flush($app);
+                $em->flush();
 
-				$attachments = $form->get(self::ATTACHMENT_KEY);
-
-				if ($attachments != null) {
-					$type = $em->getRepository('\ru\nazarov\crm\entities\AttachmentType')->findOneBy(array('code' => 'application'));
-					$uploader = $this->uploader();
-
-					foreach ($attachments['name'] as $i => $name) {
-						if (empty($name)) {
-							continue;
-						}
-
-						$a = new \ru\nazarov\crm\entities\Attachment();
-						$a->setMimeType($attachments['type'][$i]);
-						$a->setName($name);
-						$a->setPath($uploader->upload($attachments['tmp_name'][$i]));
-						$a->setType($type);
-						$a->setOwner($app->getId());
-
-						$em->persist($a);
-					}
-
-					$em->flush();
-				}
+                if (($attachments = $form->get(self::ATTACHMENT_KEY)) != null) {
+                    \ru\nazarov\sitebase\Facade::saveAttachments($app, $attachments);
+                    $em->flush();
+                }
 
 				$form->clean();
 			}

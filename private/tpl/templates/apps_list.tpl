@@ -15,20 +15,24 @@ Filter by organization:<select id="filter"><option disabled="disabled">--select 
 		<th class="app-tbl-date">Date</th>
 		<th class="app-tbl-attachments">Attachments</th>
 		<th class="app-tbl-comment">Comment</th>
-		<th class="app-tbl-print"></th>
+		<th class="acts">Actions</th>
 	</tr>
 	{foreach $apps as $i => $app}
 		<tr>
 			<td class="app-tbl-id">{$app->getId()}</td>
 			<td class="app-tbl-client">{$app->getClient()->getName()}</td>
 			<td class="app-tbl-supplier">{$app->getSupplier()->getName()}</td>
-			<td class="app-tbl-date">{$app->getDate()->format('d/m/Y')}</td>
+			<td class="app-tbl-date">{$app->getDate()->format('Y-m-d')}</td>
 			<td class="app-tbl-attachments">{if (array_key_exists($app->getId(), $attachments))}
 				{foreach $attachments[$app->getId()] as $attachment}
 					<a href="/?action=attachment&id={$attachment->getId()}">{$attachment->getName()|truncate:15:' ... ':true:true}</a><br/>
 				{/foreach}{/if}</td>
 			<td class="app-tbl-comment">{$app->getComment()|nl2br}</td>
-			<td class="app-tbl-print"><a href="/?action=app_print&id={$app->getId()}">print</a></td>
+			<td class="app-tbl-print">
+				<a href="/?action=edit_app&id={$app->getId()}">modify</a><br />
+				<a href="/?action=app_print&id={$app->getId()}">print</a><br />
+				<a href="/?action=remove_app&id={$app->getId()}">detele</a>
+			</td>
 		</tr>
 	{/foreach}
 </table>

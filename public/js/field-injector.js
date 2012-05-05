@@ -1,3 +1,5 @@
+function ajsstub() {}
+
 var FieldInjector = new Class({
 	initialize: function(form, fieldKind, FieldClass) {
 		this.form = form;

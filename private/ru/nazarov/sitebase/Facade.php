@@ -62,6 +62,16 @@
 			}
 		}
 
+        protected static function uploader() {
+            $bc = \ru\nazarov\sitebase\core\BeanContainer::instance();
+
+            if (($upldr = $bc->getBean(self::BEAN_UPLOADER)) == null) {
+                throw new \ru\nazarov\sitebase\core\exceptions\SitebaseException('Unknown bean \'' . self::BEAN_UPLOADER . '\'');
+            }
+
+            return $upldr;
+        }
+
         protected static function em() {
             $bc = \ru\nazarov\sitebase\core\BeanContainer::instance();
 
@@ -132,6 +142,27 @@
             }
 
             return $orgVals;
+        }
+
+        public static function saveAttachments($app, $attachments) {
+            $em = self::em();
+            $type = $em->getRepository('\ru\nazarov\crm\entities\AttachmentType')->findOneBy(array('code' => 'application'));
+            $uploader = self::uploader();
+
+            foreach ($attachments['name'] as $i => $name) {
+                if (empty($name)) {
+                    continue;
+                }
+
+                $a = new \ru\nazarov\crm\entities\Attachment();
+                $a->setMimeType($attachments['type'][$i]);
+                $a->setName($name);
+                $a->setPath($uploader->upload($attachments['tmp_name'][$i]));
+                $a->setType($type);
+                $a->setOwner($app->getId());
+
+                $em->persist($a);
+            }
         }
 	}
 ?>

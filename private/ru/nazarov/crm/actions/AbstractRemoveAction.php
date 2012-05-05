@@ -26,11 +26,14 @@
             }
         }
 
+        protected function customActions() {}
+
         public function execute() {
             try {
                 $this->checkRemovePossibility();
 
                 $em = $this->em();
+                $this->customActions();
                 $em->remove($this->_item);
                 $em->flush();
 

@@ -28,6 +28,7 @@
             $this->_formAct = $formAct;
             $this->_formMethod = $formMethod;
             $this->_formCls = $formCls;
+            $this->_formEnctype = $formEnctype;
             $this->_tpl = $tpl;
         }
 
