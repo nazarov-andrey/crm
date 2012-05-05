@@ -7,21 +7,15 @@
         }
 
         protected function checkRemovePossibility() {
-            if (parent::checkRemovePossibility()) {
-                $em = $this->em();
+            parent::checkRemovePossibility();
+            $em = $this->em();
 
-                $query = $em->createQuery('SELECT r FROM \ru\nazarov\crm\entities\Report r JOIN r.contact c JOIN c.person p WHERE p=:pers');
-                $query->setMaxResults(1);
-                $query->setParameter('pers', $this->_item->getId());
+            $query = $em->createQuery('SELECT r FROM \ru\nazarov\crm\entities\Report r JOIN r.contact c JOIN c.person p WHERE p=:pers');
+            $query->setMaxResults(1);
+            $query->setParameter('pers', $this->_item->getId());
 
-                if (count($query->getResult()) > 0) {
-                    $this->error('Cannot remove person: remove at first all reports with this person, then try to remove person again.');
-                    return false;
-                }
-
-                return true;
-            } else {
-                return false;
+            if (count($query->getResult()) > 0) {
+                throw new \ru\nazarov\crm\exceptions\ErrorException('Cannot remove person: remove at first all reports with this person, then try to remove person again.');
             }
         }
     }

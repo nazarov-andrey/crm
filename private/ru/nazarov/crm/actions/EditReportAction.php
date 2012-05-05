@@ -3,7 +3,7 @@
 
     class EditReportAction extends AbstractEditAction {
         public function __construct() {
-            parent::__construct('\ru\nazarov\crm\entities\Report', 'Invalid report id', '/?action=reports_list', '\ru\nazarov\crm\forms\ReportForm', 'report-form', 'Edit report', '/?action=edit_report', \ru\nazarov\crm\forms\Form::METHOD_POST, 'report_form.tpl');
+            parent::__construct('\ru\nazarov\crm\entities\Report', 'Invalid report id', '/?action=reports_list', '\ru\nazarov\crm\forms\ReportForm', 'report-form', 'Edit report', '/?action=edit_report', \ru\nazarov\crm\forms\Form::METHOD_POST, null, 'report_form.tpl');
         }
 
         protected function setItemFields() {

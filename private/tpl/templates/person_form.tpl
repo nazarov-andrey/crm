@@ -14,6 +14,10 @@
 
 			getValuesKey: function() {literal}{{/literal}
 				return "{$contact_values_key}";
+			{literal}}{/literal},
+
+			getIdsKey: function() {literal}{{/literal}
+				return "{$contact_ids_key}";
 			{literal}}{/literal}
 		});
 

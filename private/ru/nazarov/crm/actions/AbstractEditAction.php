@@ -51,29 +51,33 @@
         }
 
         public function execute() {
-            $req = $this->request();
-            $id = $req->get('id');
+            try {
+                $req = $this->request();
+                $id = $req->get('id');
 
-            if ($id === null || (($this->_item = $this->em()->find($this->_entityCls, $id)) == null)) {
-                $this->error($this->_invalidIdMsg, isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null);
-                return;
-            }
-
-            if ($req->get('submit') !== null) {
-                $this->_form = $form = $this->prepareForm(new $this->_formCls($this->_formId, $this->_formName, $this->_formAct . "&id=" . $this->_item->getId(), $this->_formMethod, $this->_formEnctype, 'save'));
-
-                if ($this->_form->validate()) {
-                    $em = $this->em();
-                    $this->_item = $em->find($this->_entityCls, $id);
-                    $this->setItemFields();
-                    $em->flush();
-                    Application::instance()->redirect($this->_redirectUrl);
-
+                if ($id === null || (($this->_item = $this->em()->find($this->_entityCls, $id)) == null)) {
+                    $this->error($this->_invalidIdMsg);
                     return;
                 }
-            }
 
-            parent::execute();
+                if ($req->get('submit') !== null) {
+                    $this->_form = $form = $this->prepareForm(new $this->_formCls($this->_formId, $this->_formName, $this->_formAct . "&id=" . $this->_item->getId(), $this->_formMethod, $this->_formEnctype, 'save'));
+
+                    if ($this->_form->validate()) {
+                        $em = $this->em();
+                        $this->_item = $em->find($this->_entityCls, $id);
+                        $this->setItemFields();
+                        $em->flush();
+                        Application::instance()->redirect($this->_redirectUrl);
+
+                        return;
+                    }
+                }
+
+                parent::execute();
+            } catch (\ru\nazarov\crm\exceptions\ErrorException $e) {
+                $this->error($e->mes, $e->back);
+            }
         }
     }
 ?>

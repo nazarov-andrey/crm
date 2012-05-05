@@ -1,5 +1,3 @@
-function ajsstub() {}
-
 var FieldInjector = new Class({
 	initialize: function(form, fieldKind, FieldClass) {
 		this.form = form;
@@ -24,7 +22,7 @@ var FieldInjector = new Class({
 
 	init: function(data) {
 		if (data != null) {
-			data.each((function (c) { this.addContact(c); }).bind(this));
+			data.each((function (c) { this.injectField(c); }).bind(this));
 		}
 	}
 });

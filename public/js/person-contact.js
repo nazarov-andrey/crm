@@ -3,6 +3,7 @@ var PersonContact = new Class({
 		if (data != null) {
 			var type = data.type;
 			var value = data.val;
+			var id = (data.id != 'undefined') ? data.id : null;
 		}
 
 		var field = new Element('div', { class: 'form-field'} );
@@ -27,6 +28,7 @@ var PersonContact = new Class({
 		rm.inject(val);
 		lbl.inject(field);
 		val.inject(field);
+		(new Element('input', { type: 'hidden', name: this.getIdsKey() + '[]', value: id})).inject(val);
 
 		this.field = field;
 	},

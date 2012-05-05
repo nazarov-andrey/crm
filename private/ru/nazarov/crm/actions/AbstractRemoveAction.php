@@ -22,20 +22,21 @@
             $id = $req->get('id');
 
             if ($id === null || (($this->_item = $this->em()->find($this->_entityCls, $id)) == null)) {
-                $this->error($this->_invalidIdMes);
-                return false;
+                throw new \ru\nazarov\crm\exceptions\ErrorException($this->_invalidIdMes);
             }
-
-            return true;
         }
 
         public function execute() {
-            if ($this->checkRemovePossibility()) {
+            try {
+                $this->checkRemovePossibility();
+
                 $em = $this->em();
                 $em->remove($this->_item);
                 $em->flush();
 
                 Application::instance()->redirect($this->_redirectUrl);
+            } catch (\ru\nazarov\crm\exceptions\ErrorException $e) {
+                $this->error($e->mes, $e->back);
             }
         }
     }
