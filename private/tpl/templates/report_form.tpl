@@ -60,11 +60,20 @@
 		orgsSelect.addEvent('change', updateSelect.pass([[personsSelect, contactsSelect], persons], orgsSelect));
 		personsSelect.addEvent('change', updateSelect.pass([[contactsSelect], contacts], personsSelect));
 
-		new Picker.Date(form.getElement('input[name=date]'), {
+		var datePicker = new Picker.Date(form.getElement('input[name=date]'), {
 			pickerClass: 'datepicker_jqui',
-			useFadeInOut: !Browser.ie
+			useFadeInOut: !Browser.ie,
+			format: '%Y-%m-%d'
 		});
 
+		{if (isset($date))}
+			datePicker.select(new Date({$date->getTimestamp() * 1000}));
+		{/if}
+
+		types.each(function (item, arr, index) { (new Element('option', { value: item.val, text: item.label })).inject(typeSelect); });
+		{if ($form->get('type') != null)}
+			typeSelect.selectedIndex = types.indexOfFun(function (t) { return t.val == {$form->get('type')}; } );
+		{/if}
 		typeSelect.fireEvent('change');
 
 		{if ($form->get('org') != null)}

@@ -33,7 +33,7 @@
 				function($type) { return (object) array('label' => $type->getCode(), 'val' => $type->getId()); },
 				$em->getRepository('\ru\nazarov\crm\entities\OrganizationType')->findAll()
 			);
-			$form->setFieldVals('type', $types);
+			//$form->setFieldVals('type', $types);
 			$this->view()->set('form', $form)
 				->set('types', $types);
 

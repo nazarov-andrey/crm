@@ -10,15 +10,26 @@
             $form = $this->_form;
             $item = $this->_item;
 
-            //$item->setName($form->get('name'));
-            //$item->setType($this->em()->find('\ru\nazarov\crm\entities\OrganizationType', $form->get('type')));
-            //$item->setPhone($form->get('phone'));
-            //$item->setSite($form->get('site'));
-            //$item->setAddress($form->get('address'));
-            //$item->setCountry($form->get('country'));
+            $em = $this->em();
+
+            $item->setContact($em->find('\ru\nazarov\crm\entities\Contact', $form->get('contact')));
+            $item->setDate(new \DateTime($form->get('date')));
+            $item->setComment($form->get('comment'));
         }
 
-        protected function fillSelects() {}
+        protected function fillSelects() {
+            $selectsDp = \ru\nazarov\sitebase\Facade::getReportSelectsDps();
+
+            $types = array_map(
+                function($type) { return (object) array('label' => $type->getCode(), 'val' => $type->getId()); },
+                $this->em()->getRepository('\ru\nazarov\crm\entities\OrganizationType')->findAll()
+            );
+
+            $this->view()->set('orgs', $selectsDp->orgs)
+                ->set('persons', $selectsDp->persons)
+                ->set('contacts', $selectsDp->contacts)
+                ->set('types', $types);
+        }
 
         protected function prepareData() {
             parent::prepareData();
@@ -27,7 +38,8 @@
             $this->view()->set('content', 'report_form.tpl')
                 ->set('orgs', $selectsDp->orgs)
                 ->set('persons', $selectsDp->persons)
-                ->set('contacts', $selectsDp->contacts);
+                ->set('contacts', $selectsDp->contacts)
+                ->set('date', $this->_item->getDate());
         }
 
         protected function setFormFields() {
@@ -44,12 +56,6 @@
             $form->set('contact', $contact->getId());
             $form->set('date', $item->getDate()->format('d/m/Y'));
             $form->set('comment', $item->getComment());
-            //$form->set('name', $item->getName());
-            //$form->set('type', $item->getType()->getId());
-            //$form->set('phone', $item->getPhone());
-            //$form->set('site', $item->getSite());
-            //$form->set('address', $item->getAddress());
-            //$form->set('country', $item->getCountry());
         }
     }
 ?>

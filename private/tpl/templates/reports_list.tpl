@@ -21,7 +21,7 @@ Filter by organization:<select id="filter"><option>any</option>{foreach $orgs as
 		<tr>
 			<td class="report-tbl-id">{$report->getId()}</td>
 			<td class="report-tbl-person">{$contact->getPerson()->getName()}</td>
-			<td class="report-tbl-date">{$report->getDate()->format('d/m/Y')}</td>
+			<td class="report-tbl-date">{$report->getDate()->format('Y-m-d')}</td>
 			{*<td class="report-tbl-contact-type">{$contact->getType()->getCode()}:</td>*}
 			<td class="report-tbl-contact">{$contact->getType()->getCode()}:&nbsp;{$contact->getValue()}</td>
 			<td class="report-tbl-comment">{$report->getComment()|nl2br}</td>
