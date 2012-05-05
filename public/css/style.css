@@ -11,7 +11,7 @@ input, textarea { border:1px solid #000000; }
 .form-field { clear:left; font-size:14px; margin: 5px 0px; }
 .form-field-label { float:left; line-height:20px; padding-right: 10px; text-align:right; width: 120px; }
 .form-field-input, .form-field-val { float: left; }
-.form-field-input textarea { height: 75px; margin-left: 2px; width: 175px; }
+.form-field-input textarea { height: 125px; margin-left: 2px; width: 400px; }
 .form-field-error { color:#aa0000; float:right; line-height:20px; margin-left: 10px; }
 .form-field-input input, .form-field-input textarea, .form-field-input select,
 .form-field-label input, .form-field-label textarea, .form-field-label select { font-size: 14px; }
@@ -28,7 +28,7 @@ input, textarea { border:1px solid #000000; }
 .top-menu-item:hover { text-decoration: underline; }
 
 .tbl { border-collapse:collapse; font-size: 14px; }
-.tbl td { border-width:1px; border-style: solid; max-width:270px; min-width:50px; padding: 6px 10px; overflow: hidden; }
+.tbl td { border-width:1px; border-style: solid; max-width:170px; min-width:50px; padding: 6px 10px; overflow: hidden; }
 .tbl td { vertical-align: top; }
 .tbl td.acts, .tbl th.acts { text-align: left; }
 .tbl th.acts { border-right-width: 1px; }
