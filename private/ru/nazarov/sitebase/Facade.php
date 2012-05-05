@@ -62,12 +62,18 @@
 			}
 		}
 
-        public static function getReportSelectsDps() {
+        protected static function em() {
             $bc = \ru\nazarov\sitebase\core\BeanContainer::instance();
 
             if (($em = $bc->getBean(self::BEAN_ENTITY_MANAGER)) == null) {
                 throw new \ru\nazarov\sitebase\core\exceptions\SitebaseException('Unknown bean \'' . self::BEAN_ENTITY_MANAGER . '\'');
             }
+
+            return $em;
+        }
+
+        public static function getReportSelectsDps() {
+            $em = self::em();
 
             $orgsSrc = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findAll();
             $orgs = array();
@@ -111,6 +117,21 @@
                 'persons' => $persons,
                 'contacts' => $contacts,
             );
+        }
+
+        public static function getPersonFormOrgsSelectDp() {
+            $orgs = self::em()->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC'));
+            $orgVals = array((object) array('label' => '--choose organization--', 'val' => 'undef', 'disabled' => true));
+
+            foreach ($orgs as $i => $org) {
+                if ($i == 0 || $orgs[$i - 1]->getType() != $org->getType()) {
+                    $orgVals[] = (object) array('label' => $org->getType()->getCode() . 's', 'val' => null, 'disabled' => true);
+                }
+
+                $orgVals[] = (object) array('label' => str_repeat('&nbsp;', 6) . htmlspecialchars($org->getName()), 'val' => $org->getId());
+            }
+
+            return $orgVals;
         }
 	}
 ?>

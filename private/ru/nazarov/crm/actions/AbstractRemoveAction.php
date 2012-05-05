@@ -8,26 +8,35 @@
         protected $_invalidIdMes;
         protected $_redirectUrl;
 
+        protected $_item;
+
         public function __construct($entityCls, $invalidIdMes, $redirectUrl) {
             $this->_entityCls = $entityCls;
             $this->_invalidIdMes = $invalidIdMes;
             $this->_redirectUrl = $redirectUrl;
         }
 
-        public function execute() {
+        protected function checkRemovePossibility() {
             $req = $this->request();
             $em = $this->em();
             $id = $req->get('id');
 
-            if ($id === null || (($item = $this->em()->find($this->_entityCls, $id)) == null)) {
-                $this->error($this->_invalidIdMes, isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null);
-                return;
+            if ($id === null || (($this->_item = $this->em()->find($this->_entityCls, $id)) == null)) {
+                $this->error($this->_invalidIdMes);
+                return false;
             }
 
-            $em->remove($item);
-            $em->flush();
+            return true;
+        }
 
-            Application::instance()->redirect($this->_redirectUrl);
+        public function execute() {
+            if ($this->checkRemovePossibility()) {
+                $em = $this->em();
+                $em->remove($this->_item);
+                $em->flush();
+
+                Application::instance()->redirect($this->_redirectUrl);
+            }
         }
     }
 ?>

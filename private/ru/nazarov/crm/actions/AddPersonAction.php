@@ -48,18 +48,18 @@
 				->set('contact_types_key', self::CONTACT_TYPES_KEY)
 				->set('contact_values_key', self::CONTACT_VALUES_KEY);
 
-			$orgs = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC'));
-			$orgVals = array((object) array('label' => '--choose organization--', 'val' => 'undef', 'disabled' => true));
+			//$orgs = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC'));
+			//$orgVals = array((object) array('label' => '--choose organization--', 'val' => 'undef', 'disabled' => true));
+            //
+			//foreach ($orgs as $i => $org) {
+			//	if ($i == 0 || $orgs[$i - 1]->getType() != $org->getType()) {
+			//		$orgVals[] = (object) array('label' => $org->getType()->getCode() . 's', 'val' => null, 'disabled' => true);
+			//	}
+            //
+			//	$orgVals[] = (object) array('label' => str_repeat('&nbsp;', 6) . htmlspecialchars($org->getName()), 'val' => $org->getId());
+			//}
 
-			foreach ($orgs as $i => $org) {
-				if ($i == 0 || $orgs[$i - 1]->getType() != $org->getType()) {
-					$orgVals[] = (object) array('label' => $org->getType()->getCode() . 's', 'val' => null, 'disabled' => true);
-				}
-
-				$orgVals[] = (object) array('label' => str_repeat('&nbsp;', 6) . htmlspecialchars($org->getName()), 'val' => $org->getId());
-			}
-
-			$form->setFieldVals('org', $orgVals);
+			$form->setFieldVals('org', \ru\nazarov\sitebase\Facade::getPersonFormOrgsSelectDp());
 
 			if ($form->get('org') == null) {
 				$form->set('org', 'undef');

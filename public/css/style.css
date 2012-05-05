@@ -46,9 +46,9 @@ th.org-tbl-name { border-left-width: 1px; }
 .person-tbl-org { text-align:right; }
 .person-tbl-pos { text-align:right; }
 .person-tbl-contact { text-align:left; }
+.person-tbl-comment{ text-align:left; }
 
 th.person-tbl-name { border-left-width: 1px; }
-th.person-tbl-contact { border-right-width: 1px; }
 
 .report-tbl-id { text-align: right; min-width: 0px !important; }
 .report-tbl-person { text-align: right; }

@@ -13,6 +13,8 @@ Filter by organization:<select id="filter"><option>any</option>{foreach $orgs as
 		<th class="person-tbl-org">Organization</th>
 		<th class="person-tbl-pos">Position</th>
 		<th class="person-tbl-contact">Contacts</th>
+		<th class="person-tbl-comment">Comment</th>
+		<th class="acts">Actions</th>
 	</tr>
 {foreach $persons as $i => $person}
 	<tr>
@@ -25,6 +27,8 @@ Filter by organization:<select id="filter"><option>any</option>{foreach $orgs as
 				{$contact->getType()->getCode()}:&nbsp;{if $contact->getType()->getCode() == 'mail'}<a href="mailto:{$contact->getValue()}">{$contact->getValue()}</a>{else}{$contact->getValue()}{/if}<br/>
 			{/foreach}
 		</td>
+		<td class="person-tbl-comment">{$person->getComment()}</td>
+		<td class="acts"><a href="/?action=edit_person&id={$person->getId()}">modify</a><br /><a href="/?action=remove_person&id={$person->getId()}">delete</a></td>
 	</tr>
 {/foreach}
 </table>

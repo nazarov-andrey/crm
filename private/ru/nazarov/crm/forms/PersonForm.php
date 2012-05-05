@@ -47,7 +47,7 @@
 					->addValidator(new \ru\nazarov\sitebase\core\forms\MethodValidator($this, 'validateContactsNum'), 'Contacts number is not match types number')
 					->addValidator(new \ru\nazarov\sitebase\core\forms\MethodValidator($this, 'validateContacts'), 'Empty contact is not allowed')
 				->addFieldExt('submit', '&nbsp;', Form::FIELD_INPUT_SUBMIT)
-				->set('submit', 'add');
+				->set('submit', $this->_submitVal);
 
 			return $this;
 		}
