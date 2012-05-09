@@ -26,11 +26,14 @@
 		});
 
 		var form = $('app-form');
-		var attachments = {$attachments|json_encode};
 
-		for (var i = 0; i < attachments.length; i++) {
-			(new AppAttachment(form, attachments[i])).getElement().inject(form.getLast(), 'before');
-		}
+		{if (isset($attachments))}
+			var attachments = {$attachments|json_encode};
+
+			for (var i = 0; i < attachments.length; i++) {
+				(new AppAttachment(form, attachments[i])).getElement().inject(form.getLast(), 'before');
+			}
+		{/if}
 
 		fa = new FieldInjector(form, 'attachment', Attachment);
 
