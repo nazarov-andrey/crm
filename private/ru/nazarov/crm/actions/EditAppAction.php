@@ -64,7 +64,7 @@
 
             $form->set('client', $item->getClient()->getId());
             $form->set('supplier', $item->getSupplier()->getId());
-            $form->set('comment', $item->getSupplier()->getId());
+            $form->set('comment', $item->getComment());
         }
     }
 ?>
