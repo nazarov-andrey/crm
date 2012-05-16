@@ -8,7 +8,7 @@
 
 			if (property_exists($this->_field, 'values')) {
 				foreach ($this->_field->values as $fieldInfo) {
-					$opt = $dom->createElement('option', $fieldInfo->label);
+					$opt = $dom->createElement('option', htmlspecialchars($fieldInfo->label));
 					$opt->setAttribute('value', $fieldInfo->val);
 
 					if ($this->_field->value === $fieldInfo->val) {
