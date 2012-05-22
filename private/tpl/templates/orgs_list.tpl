@@ -21,7 +21,7 @@ Filter by organization type: <select id="filter"><option>any</option>{foreach $t
 			</td>
 			<td class="org-tbl-address">{$org->getAddress()}</td>
 			<td class="org-tbl-country">{$org->getCountry()}</td>
-			<td class="acts"><a href="/?action=edit_org&id={$org->getId()}">modify</a><br /><a href="/?action=remove_org&id={$org->getId()}">delete</a></td>
+			<td class="acts"><a href="/?action=persons_list&org={$org->getId()}">persons</a><br/><a href="/?action=edit_org&id={$org->getId()}">modify</a><br /><a href="/?action=remove_org&id={$org->getId()}">delete</a></td>
 		</tr>
 	{/foreach}
 </table>

@@ -19,7 +19,7 @@
 
 			$repo = $em->getRepository('\ru\nazarov\crm\entities\Organization');
 			$this->view()->set('content', 'orgs_list.tpl')
-				->set('orgs', $correctType ? $repo->findBy(array('type' => $type)) : $repo->findAll())
+				->set('orgs', $correctType ? $repo->findBy(array('type' => $type), array('name' => 'ASC')) : $repo->findBy(array(), array('name' => 'ASC')))
 				->set('types', $types)
 				->set('filter', $type);
 		}

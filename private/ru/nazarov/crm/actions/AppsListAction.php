@@ -19,7 +19,7 @@
 				$attachments[$ownerId][] = $attachment;
 			}
 
-			$orgs = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC'));
+			$orgs = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC', 'name' => 'ASC'));
 			$orgId = $this->request()->get('org');
 
 			foreach ($orgs as $org) {
@@ -34,7 +34,7 @@
 
 			$repo = $em->getRepository('\ru\nazarov\crm\entities\Application');
 			$this->view()->set('content', 'apps_list.tpl')
-				->set('apps', isset($org) ? $repo->findBy(array($org->getType()->getCode() => $org->getId())) : $repo->findAll())
+				->set('apps', isset($org) ? $repo->findBy(array($org->getType()->getCode() => $org->getId()), array('id' => 'DESC')) : $repo->findBy(array(), array('id' => 'DESC')))
 				->set('attachments', $attachments)
 				->set('orgId', isset($org) ? $org->getId() : null)
 				->set('orgs', $orgs);

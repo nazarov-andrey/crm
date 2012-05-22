@@ -5,6 +5,7 @@
 		public function init() {
 			$this->addFieldExt('type', 'Type', Form::FIELD_SELECT)
 				->addFieldExt('org', 'Organization', Form::FIELD_SELECT)
+                ->addFieldExt('app', 'Request id', Form::FIELD_SELECT, true)
 				->addFieldExt('person', 'Person', Form::FIELD_SELECT)
 				->addFieldExt('contact', 'Contact', Form::FIELD_SELECT, true)
 				->addFieldExt('date', 'Date', null, true)

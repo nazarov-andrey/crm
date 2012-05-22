@@ -40,11 +40,11 @@
 
 			$form->setFieldVals('supplier', array_map(
 				    function($org) { return (object) array('label' => htmlspecialchars($org->getName()), 'val' => $org->getId()); },
-					$em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array('type' => 1))
+					$em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array('type' => 1), array('name' => 'ASC'))
 				))
 				->setFieldVals('client', array_map(
 					function($org) { return (object) array('label' => htmlspecialchars($org->getName()), 'val' => $org->getId()); },
-					$em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array('type' => 2))
+					$em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array('type' => 2), array('name' => 'ASC'))
 				));
 
 			$view = $this->view();

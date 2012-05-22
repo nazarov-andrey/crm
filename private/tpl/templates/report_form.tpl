@@ -49,16 +49,29 @@
 		var orgs = {$orgs|json_encode};
 		var persons = {$persons|json_encode};
 		var contacts = {$contacts|json_encode};
+		var apps = {$apps|json_encode};
 		var form = $('report-form');
 
 		var typeSelect = form.getElement('select[name=type]');
 		var orgsSelect = form.getElement('select[name=org]');
 		var personsSelect = form.getElement('select[name=person]');
 		var contactsSelect = form.getElement('select[name=contact]');
+		var appSelect = form.getElement('select[name=app]');
 
-		typeSelect.addEvent('change', updateSelect.pass([[orgsSelect, personsSelect, contactsSelect], orgs], typeSelect));
-		orgsSelect.addEvent('change', updateSelect.pass([[personsSelect, contactsSelect], persons], orgsSelect));
+		typeSelect.addEvent('change', updateSelect.pass([[orgsSelect, personsSelect, contactsSelect, appSelect], orgs], typeSelect));
+		orgsSelect.addEvent('change', updateSelect.pass([[personsSelect, contactsSelect, appSelect], persons], orgsSelect));
 		personsSelect.addEvent('change', updateSelect.pass([[contactsSelect], contacts], personsSelect));
+
+		orgsSelect.addEvent('change', function() {
+			apps[orgsSelect.value].each(function(appData) {
+				var opt = new Element('option', {
+					value: appData.val,
+					html: appData.html
+				});
+
+				opt.inject(appSelect);
+			});
+		});
 
 		var datePicker = new Picker.Date(form.getElement('input[name=date]'), {
 			pickerClass: 'datepicker_jqui',
@@ -79,6 +92,10 @@
 		{if ($form->get('org') != null)}
 		    orgsSelect.selectedIndex = orgs[{$form->get('type')}].indexOfFun(function (org) { return org.val == {$form->get('org')}; }) + 1;
 			orgsSelect.fireEvent('change');
+		{/if}
+
+		{if ($form->get('app') != null)}
+			appSelect.selectedIndex = apps[{$form->get('org')}].indexOfFun(function (app) { return app.val == {$form->get('app')}; }) + 1;
 		{/if}
 
 		{if ($form->get('person') != null)}

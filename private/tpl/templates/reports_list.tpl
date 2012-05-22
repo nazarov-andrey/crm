@@ -10,7 +10,9 @@ Filter by organization:<select id="filter"><option>any</option>{foreach $orgs as
 <table class="tbl">
 	<tr>
 		<th class="report-tbl-id">Id</th>
+		<th class="report-tbl-org">Organization</th>
 		<th class="report-tbl-person">Person</th>
+		<th class="report-tbl-reqid">Request id</th>
 		<th class="report-tbl-date">Date</th>
 		<th class="report-tbl-contact">Contact</th>
 		<th class="report-tbl-comment">Comment</th>
@@ -20,7 +22,9 @@ Filter by organization:<select id="filter"><option>any</option>{foreach $orgs as
 		{assign var="contact" value=$report->getContact()}
 		<tr>
 			<td class="report-tbl-id">{$report->getId()}</td>
+			<td class="report-tbl-org">{$contact->getPerson()->getOrganization()->getName()}</td>
 			<td class="report-tbl-person">{$contact->getPerson()->getName()}</td>
+			<td class="report-tbl-reqid">{$report->getApp()->getId()}</td>
 			<td class="report-tbl-date">{$report->getDate()->format('Y-m-d')}</td>
 			{*<td class="report-tbl-contact-type">{$contact->getType()->getCode()}:</td>*}
 			<td class="report-tbl-contact">{$contact->getType()->getCode()}:&nbsp;{$contact->getValue()}</td>

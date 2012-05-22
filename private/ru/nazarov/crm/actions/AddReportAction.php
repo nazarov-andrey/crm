@@ -5,11 +5,17 @@
 		protected function prepareData() {
 			parent::prepareData();
 
+            $em = $this->em();
             $selectsDp = \ru\nazarov\sitebase\Facade::getReportSelectsDps();
+
 			$this->view()->set('content', 'report_form.tpl')
 				->set('orgs', $selectsDp->orgs)
 				->set('persons', $selectsDp->persons)
-				->set('contacts', $selectsDp->contacts);
+				->set('contacts', $selectsDp->contacts)
+                ->set('apps', $selectsDp->apps)
+                ->set('supplierTypeId', $em->getRepository('\ru\nazarov\crm\entities\OrganizationType')->findOneBy(array('code' => 'supplier'))->getId())
+                ->set('clientTypeId', $em->getRepository('\ru\nazarov\crm\entities\OrganizationType')->findOneBy(array('code' => 'client'))->getId());
+                //->set('apps', array_map(function ($app) { return (object) array('id' => $app->getId()); 'client' => }, ));
 		}
 
 		public function execute() {
@@ -22,6 +28,7 @@
 				$r->setContact($em->find('\ru\nazarov\crm\entities\Contact', $form->get('contact')));
 				$r->setDate(new \DateTime($form->get('date')));
                 $r->setLegalEntity($_SESSION['le']);
+                $r->setApp($em->find('\ru\nazarov\crm\entities\Application', $form->get('app')));
 
 				$em->persist($r);
 				$em->flush();

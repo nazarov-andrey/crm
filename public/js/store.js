@@ -109,9 +109,10 @@ var Store = new Class({
 	testItem: function(fltr, item, index, ar) {
 		var dp = this.dp;
 		var fields = this.fields;
+		var fltrLc = fltr.toLowerCase();
 
 		for (var i = 0; i < fields.length; i++) {
-			if (item[fields[i].dataField].search(fltr) > -1) {
+			if (item[fields[i].dataField].toLowerCase().search(fltrLc) > -1) {
 				return true;
 			}
 		}

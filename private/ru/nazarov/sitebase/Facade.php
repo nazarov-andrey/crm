@@ -85,7 +85,7 @@
         public static function getReportSelectsDps() {
             $em = self::em();
 
-            $orgsSrc = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findAll();
+            $orgsSrc = $em->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('name' => 'ASC'));
             $orgs = array();
             $personsSrc = $em->getRepository('\ru\nazarov\crm\entities\Person')->findAll();
             $persons = array();
@@ -122,15 +122,36 @@
                 $contacts[$person][] = (object) array('label' => $contact->getType()->getCode() . '(' . $contact->getValue() . ')', 'val' => $contact->getId());
             }
 
+            $appsSrc = $em->getRepository('\ru\nazarov\crm\entities\Application')->findBy(array(), array('id' => 'DESC'));
+            $apps = array();
+
+            foreach ($appsSrc as $app) {
+                $appId = $app->getId();
+                $client = $app->getClient()->getId();
+                $supplier = $app->getSupplier()->getId();
+
+                if (!array_key_exists($client, $apps)) {
+                    $apps[$client] = array();
+                }
+
+                if (!array_key_exists($supplier, $apps)) {
+                    $apps[$supplier] = array();
+                }
+
+                $apps[$client][] = (object) array('val' => $appId, 'html' => $appId);
+                $apps[$supplier][] = (object) array('val' => $appId, 'html' => $appId);
+            }
+
             return (object) array(
                 'orgs' => $orgs,
                 'persons' => $persons,
                 'contacts' => $contacts,
+                'apps' => $apps,
             );
         }
 
         public static function getPersonFormOrgsSelectDp() {
-            $orgs = self::em()->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC'));
+            $orgs = self::em()->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC', 'name' => 'ASC'));
             $orgVals = array((object) array('label' => '--choose organization--', 'val' => 'undef', 'disabled' => true));
 
             foreach ($orgs as $i => $org) {

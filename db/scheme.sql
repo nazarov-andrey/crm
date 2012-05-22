@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.61, for debian-linux-gnu (i486)
+-- MySQL dump 10.13  Distrib 5.1.62, for apple-darwin10.3.0 (i386)
 --
--- Host: localhost    Database: italy
+-- Host: localhost    Database: crm
 -- ------------------------------------------------------
--- Server version	5.1.61-0ubuntu0.10.04.1
+-- Server version	5.1.62
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `application` (
   `comment` text NOT NULL,
   `legal_entity` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `contact` (
   `type` bigint(20) NOT NULL,
   `value` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +127,7 @@ CREATE TABLE `organization` (
   `country` varchar(255) NOT NULL,
   `legal_entity` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `person` (
   `comment` text NOT NULL,
   `legal_entity` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,8 +175,9 @@ CREATE TABLE `report` (
   `date` date NOT NULL,
   `comment` text NOT NULL,
   `legal_entity` bigint(20) NOT NULL,
+  `app` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +197,7 @@ CREATE TABLE `store_item` (
   `min_amount` bigint(20) NOT NULL,
   `comment` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,4 +225,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-05-05 10:14:48
+-- Dump completed on 2012-05-22 19:07:47

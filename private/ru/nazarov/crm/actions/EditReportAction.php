@@ -15,6 +15,7 @@
             $item->setContact($em->find('\ru\nazarov\crm\entities\Contact', $form->get('contact')));
             $item->setDate(new \DateTime($form->get('date')));
             $item->setComment($form->get('comment'));
+            $item->setApp($em->find('\ru\nazarov\crm\entities\Application', $form->get('app')));
         }
 
         protected function fillSelects() {
@@ -39,6 +40,7 @@
                 ->set('orgs', $selectsDp->orgs)
                 ->set('persons', $selectsDp->persons)
                 ->set('contacts', $selectsDp->contacts)
+                ->set('apps', $selectsDp->apps)
                 ->set('date', $this->_item->getDate());
         }
 
@@ -56,6 +58,7 @@
             $form->set('contact', $contact->getId());
             $form->set('date', $item->getDate()->format('d/m/Y'));
             $form->set('comment', $item->getComment());
+            $form->set('app', $item->getApp()->getId());
         }
     }
 ?>

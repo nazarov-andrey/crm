@@ -13,6 +13,8 @@
 		private $comment;
         /** @Column(name="legal_entity", type="bigint")  */
         private $legalEntity;
+        /** @OneToOne(targetEntity="Application") @JoinColumn(name="app",referencedColumnName="id") */
+        private $app;
 
         public function setComment($comment) {
 			$this->comment = $comment;
@@ -52,6 +54,14 @@
 
         public function getLegalEntity() {
             return $this->legalEntity;
+        }
+
+        public function setApp($app) {
+            $this->app = $app;
+        }
+
+        public function getApp() {
+            return $this->app;
         }
     }
 ?>
