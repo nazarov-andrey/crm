@@ -17,7 +17,7 @@
             $item->setComment($form->get('comment'));
 
             if (($attachments = $form->get(AddAppAction::ATTACHMENT_KEY)) != null) {
-                \ru\nazarov\sitebase\Facade::saveAttachments($item, $attachments);
+                \ru\nazarov\sitebase\Facade::saveAttachments($item->getId(), 'application', $attachments);
             }
 
             if (($rmAttachments = $form->get('rm-attachment')) != null) {

@@ -4,12 +4,13 @@
     class AddOfferAction extends UserAction {
         protected function prepareData() {
             parent::prepareData();
-            $this->view()->set('content', 'offer_form.tpl');
+            $this->view()->set('content', 'offer_form.tpl')
+                ->set('attachment_key', AddAppAction::ATTACHMENT_KEY);;
         }
 
         public function execute() {
             $em = $this->em();
-            $form = $this->prepareForm(new \ru\nazarov\crm\forms\OfferForm('offer-form', 'Add offer', '/?action=add_offer', \ru\nazarov\crm\forms\Form::METHOD_POST));
+            $form = $this->prepareForm(new \ru\nazarov\crm\forms\OfferForm('offer-form', 'Add offer', '/?action=add_offer', \ru\nazarov\crm\forms\Form::METHOD_POST, 'multipart/form-data'));
 
             if (!$form->isEmpty() && $form->validate()) {
                 $offer = new \ru\nazarov\crm\entities\Offer();
@@ -21,6 +22,12 @@
 
                 $em->persist($offer);
                 $em->flush();
+
+                if (($attachments = $form->get(AddAppAction::ATTACHMENT_KEY)) != null) {
+                    \ru\nazarov\sitebase\Facade::saveAttachments($offer->getId(), 'offer', $attachments);
+                    $em->flush();
+                }
+
                 $form->clean();
             }
 

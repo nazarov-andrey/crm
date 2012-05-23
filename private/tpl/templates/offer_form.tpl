@@ -5,7 +5,12 @@
 <script src="/js/date-picker/Picker.js" type="text/javascript"></script>
 <script src="/js/date-picker/Picker.Attach.js" type="text/javascript"></script>
 <script src="/js/date-picker/Picker.Date.js" type="text/javascript"></script>
-<script src="/js/selects-utils.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="/js/selects-utils.js"></script>
+<script type="text/javascript" src="/js/field-injector.js"></script>
+<script type="text/javascript" src="/js/attachment.js"></script>
+<script type="text/javascript" src="/js/app-attachment.js"></script>
 
 <link href="/js/date-picker/datepicker_jqui/datepicker_jqui.css" rel="stylesheet">
 
@@ -32,5 +37,22 @@
 			useFadeInOut: !Browser.ie,
 			format: '%Y-%m-%d'
 		});
+
+		Attachment.implement({
+			getAttachmentsKey: function() {literal}{{/literal}
+				return "{$attachment_key}";
+			{literal}}{/literal}
+		});
+
+	{if (isset($attachments))}
+		var attachments = {$attachments|json_encode};
+
+		for (var i = 0; i < attachments.length; i++) {
+			(new AppAttachment(form, attachments[i])).getElement().inject(form.getLast(), 'before');
+		}
+	{/if}
+
+		fa = new FieldInjector(form, 'attachment', Attachment);
+		{if isset($date)}datePicker.select(new Date({$date->getTimestamp() * 1000})){/if}
 	});
 </script>

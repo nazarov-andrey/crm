@@ -31,7 +31,7 @@
                 $em->flush();
 
                 if (($attachments = $form->get(self::ATTACHMENT_KEY)) != null) {
-                    \ru\nazarov\sitebase\Facade::saveAttachments($app, $attachments);
+                    \ru\nazarov\sitebase\Facade::saveAttachments($app->getId(), 'application', $attachments);
                     $em->flush();
                 }
 

@@ -56,7 +56,7 @@
             $form->set('org', $org->getId());
             $form->set('person', $person->getId());
             $form->set('contact', $contact->getId());
-            $form->set('date', $item->getDate()->format('d/m/Y'));
+            $form->set('date', $item->getDate()->format('Y-m-d'));
             $form->set('comment', $item->getComment());
             $form->set('app', $item->getApp()->getId());
         }

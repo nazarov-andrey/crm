@@ -169,9 +169,9 @@
             return $orgVals;
         }
 
-        public static function saveAttachments($app, $attachments) {
+        public static function saveAttachments($ownerId, $ownerTypeCode, $attachments) {
             $em = self::em();
-            $type = $em->getRepository('\ru\nazarov\crm\entities\AttachmentType')->findOneBy(array('code' => 'application'));
+            $type = $em->getRepository('\ru\nazarov\crm\entities\AttachmentType')->findOneBy(array('code' => $ownerTypeCode));
             $uploader = self::uploader();
 
             foreach ($attachments['name'] as $i => $name) {
@@ -184,7 +184,7 @@
                 $a->setName($name);
                 $a->setPath($uploader->upload($attachments['tmp_name'][$i]));
                 $a->setType($type);
-                $a->setOwner($app->getId());
+                $a->setOwner($ownerId);
 
                 $em->persist($a);
             }

@@ -8,7 +8,9 @@
                 //->addFieldExt('offer_id', 'Offer id', null, true)
                 ->addFieldExt('date', 'Date', null, true)
                 ->addFieldExt('comment', 'Comment', Form::FIELD_TEXTAREA)
+                ->addFieldExt('attachment', '', Form::FIELD_NOT_RENDER)
                 ->addFieldExt('submit', '&nbsp;', Form::FIELD_INPUT_SUBMIT)
+                ->addFieldExt('rm-attachment', '', Form::FIELD_NOT_RENDER)
                 ->set('submit', $this->_submitVal);
 
             return $this;
