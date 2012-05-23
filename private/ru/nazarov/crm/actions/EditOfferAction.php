@@ -3,7 +3,7 @@
 
     class EditOfferAction extends AbstractEditAction {
         public function __construct() {
-            parent::__construct('\ru\nazarov\crm\entities\Offer', 'Invalid offer id', '/?action=add_offer', '\ru\nazarov\crm\forms\OfferForm', 'offer-form', 'Edit offer', '/?action=edit_offer', \ru\nazarov\crm\forms\Form::METHOD_POST, 'multipart/form-data', 'offer_form.tpl');
+            parent::__construct('\ru\nazarov\crm\entities\Offer', 'Invalid offer id', '/?action=offers_list', '\ru\nazarov\crm\forms\OfferForm', 'offer-form', 'Edit offer', '/?action=edit_offer', \ru\nazarov\crm\forms\Form::METHOD_POST, 'multipart/form-data', 'offer_form.tpl');
         }
 
         protected function fillSelects() {

@@ -13,14 +13,19 @@
             $form = $this->prepareForm(new \ru\nazarov\crm\forms\OfferForm('offer-form', 'Add offer', '/?action=add_offer', \ru\nazarov\crm\forms\Form::METHOD_POST, 'multipart/form-data'));
 
             if (!$form->isEmpty() && $form->validate()) {
+                $offerId = $em->getRepository('\ru\nazarov\crm\entities\OfferId')->findOneBy(array());
+
                 $offer = new \ru\nazarov\crm\entities\Offer();
                 $offer->setOrg($em->find('\ru\nazarov\crm\entities\Organization', $form->get('org')));
                 $offer->setApp($em->find('\ru\nazarov\crm\entities\Application', $form->get('app')));
                 $offer->setDate(new \DateTime($form->get('date')));
                 $offer->setComment($form->get('comment'));
                 $offer->setLegalEntity($_SESSION['le']);
+                $offer->setOfferId($offerId->getPrefix() . str_pad($offerId->getNextId(), 4, '0', STR_PAD_LEFT));
 
                 $em->persist($offer);
+                $offerId->setNextId($offerId->getNextId() + 1);
+
                 $em->flush();
 
                 if (($attachments = $form->get(AddAppAction::ATTACHMENT_KEY)) != null) {

@@ -9,7 +9,7 @@
 			$attachmentOwnerType = $em->getRepository('\ru\nazarov\crm\entities\AttachmentType')->findOneBy(array('code' => 'application'));
 			$attachments = array();
 
-			foreach ($em->getRepository('\ru\nazarov\crm\entities\Attachment')->findAll() as $attachment) {
+			foreach ($em->getRepository('\ru\nazarov\crm\entities\Attachment')->findBy(array('type' => $attachmentOwnerType)) as $attachment) {
 				$ownerId = $attachment->getOwner();
 
 				if (!array_key_exists($ownerId, $attachments)) {

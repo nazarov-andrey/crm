@@ -15,6 +15,8 @@
         private $comment;
         /** @Column(name="legal_entity", type="bigint")  */
         private $legalEntity;
+        /** @Column(name="offer_id", length=255)  */
+        private $offerId;
 
         public function setApp($app) {
             $this->app = $app;
@@ -62,6 +64,14 @@
 
         public function getOrg() {
             return $this->org;
+        }
+
+        public function setOfferId($offerId) {
+            $this->offerId = $offerId;
+        }
+
+        public function getOfferId() {
+            return $this->offerId;
         }
     }
 ?>
