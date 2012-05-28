@@ -21,7 +21,7 @@
 
 LOCK TABLES `attachment_type` WRITE;
 /*!40000 ALTER TABLE `attachment_type` DISABLE KEYS */;
-INSERT INTO `attachment_type` VALUES (1,'application'),(2,'organization'),(3,'person');
+INSERT INTO `attachment_type` VALUES (1,'application'),(2,'organization'),(3,'person',),(4,'offer');
 /*!40000 ALTER TABLE `attachment_type` ENABLE KEYS */;
 UNLOCK TABLES;
 

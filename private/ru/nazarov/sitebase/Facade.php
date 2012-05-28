@@ -195,10 +195,12 @@
 
         public static function notifyHeads($subj, $mes, $details) {
             $heads = array('mame@satoriroup.it', 'satori@satorigroup.ru');
-            $mailtoHost = \ru\nazarov\sitebase\core\BeanContainer::instance()->getBean(self::BEAN_CONF)->mailtoHost;
+            
+            //$heads = array('nazarov.andrey@me.com');
+	$mailtoHost = \ru\nazarov\sitebase\core\BeanContainer::instance()->getBean(self::BEAN_CONF)->mailtoHost;
 
             foreach ($heads as $head) {
-                mail($head, $subj, '<html><head></head><body>' . $mes . '<a href="http://' . $mailtoHost . $details . '">Details.</a></body></html>', 'From: noreply@' . $mailtoHost);
+                mail($head, $subj, '<html><head></head><body>' . $mes . '&nbsp;<a href="http://' . $mailtoHost . $details . '">Details.</a></body></html>', 'Content-type: text/html; charset=utf-8' . "\r\n" . 'From: noreply@' . $mailtoHost);
             }
         }
 	}
