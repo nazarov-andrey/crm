@@ -41,6 +41,7 @@
 	$beans->customFactory = CustomFactory::instance();
 	$beans->roles = $roles;
 	$beans->uploader = new \ru\nazarov\sitebase\core\Uploader('/../private/attachments');
+    $beans->conf = $conf;
 
-	Facade::runApplication($beans, $conf);
+	Facade::runApplication($beans);
 ?>
