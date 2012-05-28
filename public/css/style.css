@@ -90,3 +90,11 @@ th.store-tbl-id { border-left-width: 1px; }
 .header { background-repeat: repeat-x; height: 60px; position:relative; width: 100%; }
 .left-menu-item { float:right; display:block; margin-right:20px; height: 59px; position:relative; width: 156px; }
 .tbl th { /*boder-top-width:1px; border-bottom-width:1px; border-top-style:solid; border-bottom-style:solid;*/border-top-width: 1px; border-bottom-width: 1px; border-style: solid; color:#ffffff; height: 29px; font-weight: normal; padding: 0px 10px; text-shadow: black 1px 1px 3px; }
+
+.offer-tbl-id { text-align: right; min-width: 0px !important; }
+.offer-tbl-org { text-align: right; }
+.offer-tbl-app { text-align: right; }
+.offer-tbl-offer-id { text-align: right; }
+.offer-tbl-date { text-align: right; }
+.offer-tbl-attachments { text-align: right; }
+.offer-tbl-comment { text-align: left; }

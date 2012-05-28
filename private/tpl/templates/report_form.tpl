@@ -5,45 +5,11 @@
 <script src="/js/date-picker/Picker.js" type="text/javascript"></script>
 <script src="/js/date-picker/Picker.Attach.js" type="text/javascript"></script>
 <script src="/js/date-picker/Picker.Date.js" type="text/javascript"></script>
+<script src="/js/selects-utils.js" type="text/javascript"></script>
 
 <link href="/js/date-picker/datepicker_jqui/datepicker_jqui.css" rel="stylesheet">
 
 <script type="text/javascript">
-	function updateSelect(selects, opts) {
-	    selects.each(function (select) {
-			select.empty();
-			(new Element('option', { html: '--select item--', disabled: 'disabled' })).inject(select, 'top');
-		});
-
-		var select = selects[0];
-		var opts = opts[this.options[this.selectedIndex].value];
-
-		if (opts == null || opts == 'undefined') {
-			return;
-		}
-
-	    opts.each(function(optData) {
-	        var opt = new Element('option', {
-	        	value: optData.val,
-				html: optData.label
-			});
-
-			opt.inject(select);
-		});
-	}
-
-	Array.implement({
-	    indexOfFun: function(fn) {
-	        for (var i = 0; i < this.length; i++) {
-	            if (fn(this[i])) {
-	                return i;
-				}
-			}
-
-			return -1;
-		}
-	});
-
 	$(window).addEvent('domready', function() {
 		var types = {$types|json_encode};
 		var orgs = {$orgs|json_encode};
@@ -66,7 +32,7 @@
 			apps[orgsSelect.value].each(function(appData) {
 				var opt = new Element('option', {
 					value: appData.val,
-					html: appData.html
+					html: appData.label
 				});
 
 				opt.inject(appSelect);

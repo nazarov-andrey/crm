@@ -82,6 +82,30 @@
             return $em;
         }
 
+        public static function getAppsSelectDp() {
+            $appsSrc = self::em()->getRepository('\ru\nazarov\crm\entities\Application')->findBy(array(), array('id' => 'DESC'));
+            $apps = array();
+
+            foreach ($appsSrc as $app) {
+                $appId = $app->getId();
+                $client = $app->getClient()->getId();
+                $supplier = $app->getSupplier()->getId();
+
+                if (!array_key_exists($client, $apps)) {
+                    $apps[$client] = array();
+                }
+
+                if (!array_key_exists($supplier, $apps)) {
+                    $apps[$supplier] = array();
+                }
+
+                $apps[$client][] = (object) array('val' => $appId, 'label' => $appId);
+                $apps[$supplier][] = (object) array('val' => $appId, 'label' => $appId);
+            }
+
+            return $apps;
+        }
+
         public static function getReportSelectsDps() {
             $em = self::em();
 
@@ -122,37 +146,17 @@
                 $contacts[$person][] = (object) array('label' => $contact->getType()->getCode() . '(' . $contact->getValue() . ')', 'val' => $contact->getId());
             }
 
-            $appsSrc = $em->getRepository('\ru\nazarov\crm\entities\Application')->findBy(array(), array('id' => 'DESC'));
-            $apps = array();
-
-            foreach ($appsSrc as $app) {
-                $appId = $app->getId();
-                $client = $app->getClient()->getId();
-                $supplier = $app->getSupplier()->getId();
-
-                if (!array_key_exists($client, $apps)) {
-                    $apps[$client] = array();
-                }
-
-                if (!array_key_exists($supplier, $apps)) {
-                    $apps[$supplier] = array();
-                }
-
-                $apps[$client][] = (object) array('val' => $appId, 'html' => $appId);
-                $apps[$supplier][] = (object) array('val' => $appId, 'html' => $appId);
-            }
-
             return (object) array(
                 'orgs' => $orgs,
                 'persons' => $persons,
                 'contacts' => $contacts,
-                'apps' => $apps,
+                'apps' => self::getAppsSelectDp(),
             );
         }
 
         public static function getPersonFormOrgsSelectDp() {
             $orgs = self::em()->getRepository('\ru\nazarov\crm\entities\Organization')->findBy(array(), array('typeId' => 'ASC', 'name' => 'ASC'));
-            $orgVals = array((object) array('label' => '--choose organization--', 'val' => 'undef', 'disabled' => true));
+            $orgVals = array((object) array('label' => '--choose organization--', 'val' => 'undef', 'disabled' => true, 'selected' => true));
 
             foreach ($orgs as $i => $org) {
                 if ($i == 0 || $orgs[$i - 1]->getType() != $org->getType()) {
@@ -165,9 +169,9 @@
             return $orgVals;
         }
 
-        public static function saveAttachments($app, $attachments) {
+        public static function saveAttachments($ownerId, $ownerTypeCode, $attachments) {
             $em = self::em();
-            $type = $em->getRepository('\ru\nazarov\crm\entities\AttachmentType')->findOneBy(array('code' => 'application'));
+            $type = $em->getRepository('\ru\nazarov\crm\entities\AttachmentType')->findOneBy(array('code' => $ownerTypeCode));
             $uploader = self::uploader();
 
             foreach ($attachments['name'] as $i => $name) {
@@ -180,7 +184,7 @@
                 $a->setName($name);
                 $a->setPath($uploader->upload($attachments['tmp_name'][$i]));
                 $a->setType($type);
-                $a->setOwner($app->getId());
+                $a->setOwner($ownerId);
 
                 $em->persist($a);
             }
