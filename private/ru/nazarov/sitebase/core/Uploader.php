@@ -25,7 +25,7 @@
                     $filename = sha1(rand());
                 } while (file_exists($dst . $filename));
             }
-            
+
             if (!move_uploaded_file($tmpName, $dst . $filename)) {
                 throw new \ru\nazarov\sitebase\core\exceptions\SitebaseException('File uploading error');
             }

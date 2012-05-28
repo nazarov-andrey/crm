@@ -18,12 +18,14 @@
 		const BEAN_REQUEST = 'facade_bean_request';
 		const BEAN_APP = 'facade_bean_app';
 		const BEAN_UPLOADER = 'facade_bean_uploader';
+        const BEAN_CONF = 'facade_bean_conf';
 
 		public static function customPreparation($beans) {
 			$beans->bc->addDependency($beans->auth, Auth::INJECTION_ENTITY_MANAGER, self::BEAN_ENTITY_MANAGER);
 		}
 
-		public static function runApplication($beans, $conf) {
+		public static function runApplication($beans) {
+            $conf = $beans->conf;
 			$app = $beans->app;
 			$actionFactory = $beans->actionFactory;
 			$coreFactory = $beans->coreFactory;
@@ -42,6 +44,7 @@
 				->addBean(self::BEAN_REQUEST, $request)
 				->addBean(self::BEAN_APP, $app)
 				->addBean(self::BEAN_UPLOADER, $uploader)
+                ->addBean(self::BEAN_CONF, $conf)
 				->addDependency($app, Application::INJECTION_ACTS_FACTORY, self::BEAN_ACTION_FACTORY)
 				->addDependency($app, Application::INJECTION_BEAN_CONTAINER, self::BEAN_BEAN_CONTAINER)
 				->addDependency($app, Application::INJECTION_AUTH, self::BEAN_AUTH)
@@ -187,6 +190,15 @@
                 $a->setOwner($ownerId);
 
                 $em->persist($a);
+            }
+        }
+
+        public static function notifyHeads($subj, $mes, $details) {
+            $heads = array('mame@satoriroup.it', 'satori@satorigroup.ru');
+            $mailtoHost = \ru\nazarov\sitebase\core\BeanContainer::instance()->getBean(self::BEAN_CONF)->mailtoHost;
+
+            foreach ($heads as $head) {
+                mail($head, $subj, '<html><head></head><body>' . $mes . '<a href="http://' . $mailtoHost . $details . '">Details.</a></body></html>', 'From: noreply@' . $mailtoHost);
             }
         }
 	}

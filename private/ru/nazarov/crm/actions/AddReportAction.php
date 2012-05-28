@@ -33,6 +33,8 @@
 				$em->persist($r);
 				$em->flush();
 
+                \ru\nazarov\sitebase\Facade::notifyHeads('New report.', 'New report added.', '/?action=edit_report&id' . $r->getId());
+
 				$form->clean();
 			}
 
