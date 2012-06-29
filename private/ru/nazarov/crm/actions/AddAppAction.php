@@ -30,6 +30,9 @@
 				$em->persist($app);
                 $em->flush();
 
+
+		\ru\nazarov\sitebase\Facade::notifyHeads('New request.', 'New request added.', '/?action=edit_app&id=' . $app->getId());
+
                 if (($attachments = $form->get(self::ATTACHMENT_KEY)) != null) {
                     \ru\nazarov\sitebase\Facade::saveAttachments($app->getId(), 'application', $attachments);
                     $em->flush();
