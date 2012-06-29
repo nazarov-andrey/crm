@@ -31,7 +31,7 @@ Filter by organization:<select id="filter"><option disabled="disabled">--select 
 			<td class="app-tbl-print">
 				<a href="/?action=edit_app&id={$app->getId()}">modify</a><br />
 				<a href="/?action=app_print&id={$app->getId()}">print</a><br />
-				<a href="/?action=remove_app&id={$app->getId()}">detele</a>
+				{if $smarty.session.super}<a href="/?action=remove_app&id={$app->getId()}">detele</a>{/if}
 			</td>
 		</tr>
 	{/foreach}

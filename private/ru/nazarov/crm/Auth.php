@@ -8,6 +8,7 @@
 
 		const ROLE_GUEST = 'auth_role_guest';
 		const ROLE_USER = 'auth_role_user';
+        const ROLE_ADMIN = 'auth_role_admin';
 		const INJECTION_ENTITY_MANAGER = 'auth_injection_entity_manager';
 
 		protected function em() {
@@ -25,12 +26,13 @@
 					->getRepository('\ru\nazarov\crm\entities\User')
 					->findOneBy(array('login' => $_SESSION['login'], 'pass' => $_SESSION['pass']));
 
-				$this->_role = $this->getInjection(($retval = $u != null) ? self::ROLE_USER : self::ROLE_GUEST);
+                $_SESSION['super'] = $u->getSuper() > 0;
+				$this->_role = $this->getInjection(($retval = $u !== null) ? ($u->getSuper() > 0 ? self::ROLE_ADMIN : self::ROLE_USER) : self::ROLE_GUEST);
 			} else {
 				$this->_role = $this->getInjection(self::ROLE_GUEST);
 				$retval = false;
+                $_SESSION['super'] = false;
 			}
-
 
 			return $retval;
 		}

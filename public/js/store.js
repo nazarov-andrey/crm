@@ -1,5 +1,5 @@
 var Store = new Class({
-	initialize: function(id, dp) {
+	initialize: function(id, dp, sup) {
 		var tbl = $(id);
 		var tbody = tbl.getElement('tbody');
 
@@ -14,6 +14,7 @@ var Store = new Class({
 		this.sortField = null;
 		this.sortOrder = null;
 		this.fltr = null;
+		this.sup = sup;
 	},
 
 	addField: function(name, cls, dataField, sortable) {
@@ -65,7 +66,10 @@ var Store = new Class({
 			var actsTd = new Element('td', { 'class': 'acts'});
 			(new Element('a', { text: 'modify', href: '/?action=edit_store&id=' + dp[i].id})).inject(actsTd);
 			(new Element('br')).inject(actsTd);
-			(new Element('a', { text: 'delete', href: '/?action=remove_store&id=' + dp[i].id})).inject(actsTd);
+
+			if (this.sup) {
+				(new Element('a', { text: 'delete', href: '/?action=remove_store&id=' + dp[i].id})).inject(actsTd);
+			}
 
 			actsTd.inject(tr);
 		}

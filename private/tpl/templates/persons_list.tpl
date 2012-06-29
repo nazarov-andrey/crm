@@ -28,7 +28,10 @@ Filter by organization:<select id="filter"><option>any</option>{foreach $orgs as
 			{/foreach}
 		</td>
 		<td class="person-tbl-comment">{$person->getComment()}</td>
-		<td class="acts"><a href="/?action=edit_person&id={$person->getId()}">modify</a><br /><a href="/?action=remove_person&id={$person->getId()}">delete</a></td>
+		<td class="acts">
+			<a href="/?action=edit_person&id={$person->getId()}">modify</a><br />
+			{if $smarty.session.super}<a href="/?action=remove_person&id={$person->getId()}">delete</a>{/if}
+		</td>
 	</tr>
 {/foreach}
 </table>

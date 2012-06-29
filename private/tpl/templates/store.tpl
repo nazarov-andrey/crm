@@ -13,7 +13,7 @@ search:&nbsp;<input type="text" onkeyup="searchKeyup(event)"/><br />
 	}
 
 	$(window).addEvent('domready', function () {
-		store = new Store('store', {$items|json_encode});
+		store = new Store('store', {$items|json_encode}, {if $smarty.session.super > 0}true{else}false{/if});
 		store.addField('Id', 'store-tbl-id', 'id', true)
 			.addField('Code', 'store-tbl-code', 'code', true)
 			.addField('Description', 'store-tbl-desc', 'description', false)

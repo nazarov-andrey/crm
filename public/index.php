@@ -29,6 +29,7 @@
 		Auth::ROLE_USER => $cf->createRole()->setDefaultAction('\ru\nazarov\crm\actions\AddOrgAction')
 			->allow('\ru\nazarov\crm\actions\UserAction')
 			->allow('\ru\nazarov\crm\actions\PrintAction'),
+        Auth::ROLE_ADMIN => $cf->createRole()->setDefaultAction('\ru\nazarov\crm\actions\AddOrgAction')->deny('\ru\nazarov\crm\actions\GuestAction'),
 	);
 
 	$beans = new stdClass();
