@@ -3,7 +3,7 @@
 
     use \ru\nazarov\sitebase\core\Application;
 
-    abstract class AbstractRemoveAction extends UserAction {
+    abstract class AbstractRemoveAction extends AdminAction {
         protected $_entityCls;
         protected $_invalidIdMes;
         protected $_redirectUrl;
