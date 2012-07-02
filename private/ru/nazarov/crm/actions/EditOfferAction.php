@@ -20,6 +20,7 @@
             $item->setApp($em->find('\ru\nazarov\crm\entities\Application', $form->get('app')));
             $item->setDate(new \DateTime($form->get('date')));
             $item->setComment($form->get('comment'));
+            $item->setOfferId($form->get('offer_id'));
 
             if (($attachments = $form->get(AddAppAction::ATTACHMENT_KEY)) != null) {
                 \ru\nazarov\sitebase\Facade::saveAttachments($item->getId(), 'offer', $attachments);
@@ -58,6 +59,7 @@
             $form->set('app', $item->getApp()->getId());
             $form->set('date', $item->getDate()->format('Y-m-d'));
             $form->set('comment', $item->getComment());
+            $form->set('offer_id', $item->getOfferId());
         }
     }
 ?>

@@ -96,5 +96,5 @@ th.store-tbl-id { border-left-width: 1px; }
 .offer-tbl-app { text-align: right; }
 .offer-tbl-offer-id { text-align: right; }
 .offer-tbl-date { text-align: right; }
-.offer-tbl-attachments { text-align: right; }
+.offer-tbl-attachments { text-align: right; width:230px; }
 .offer-tbl-comment { text-align: left; }

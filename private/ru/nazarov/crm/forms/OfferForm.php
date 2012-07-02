@@ -5,7 +5,7 @@
         public function init() {
             $this->addFieldExt('org', 'Organization', Form::FIELD_SELECT, true)
                 ->addFieldExt('app', 'Request id', Form::FIELD_SELECT, true)
-                //->addFieldExt('offer_id', 'Offer id', null, true)
+                ->addFieldExt('offer_id', 'Offer №', null, true)
                 ->addFieldExt('date', 'Date', null, true)
                 ->addFieldExt('comment', 'Comment', Form::FIELD_TEXTAREA)
                 ->addFieldExt('attachment', '', Form::FIELD_NOT_RENDER)
